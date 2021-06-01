@@ -27,7 +27,7 @@ export const NavBar = () => {
                 <div className="logoCarrito">
                     <a href="index.html" className="iconoCarrito">
                         <div className="carritoNombre">
-                            <AddShoppingCartTwoToneIcon fontSize="large" />
+                            <AddShoppingCartTwoToneIcon fontSize="large"/>
                             <p className="parrafoCarrito">Carrito</p>
                         </div>
                     </a>
@@ -42,9 +42,7 @@ export const NavBar = () => {
                         </div>
                     </div>
                 </div>
-
             </nav>
-
         </header>
 
     </>
