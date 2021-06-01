@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/NavBar.css';
 import '@fontsource/roboto';
 import 'poppins-font';
 import logo from '../../img/main_logo.png';
