@@ -1,8 +1,9 @@
 import React from 'react';
 import 'poppins-font';
 import {makeStyles} from '@material-ui/core';
-import AddShoppingCartTwoToneIcon from '@material-ui/icons/AddShoppingCartTwoTone';
 import {cartWidgetStyle} from './CartWidgetStyle';
+import AddShoppingCartTwoToneIcon from '@material-ui/icons/AddShoppingCartTwoTone';
+
 
 const useStyles = makeStyles((theme) => cartWidgetStyle(theme));
 

@@ -5,12 +5,15 @@ export const itemListContainerStyle = theme => {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            width: '30rem',
+            width: 'auto',
             margin: '1rem 0 0',
             '& h5': {
                 color: 'white',
                 fontFamily: 'poppins',
                 fontWeight: '500'
+            },
+            '@media (max-width: 800px)': {
+                
             }
         }
     })

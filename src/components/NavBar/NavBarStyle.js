@@ -1,17 +1,28 @@
 export const navBarStyle = theme => {
     return ({
-        header: {
+        container: {
             fontFamily: 'poppins',
             padding: '0.5rem 0.8rem 0',
             backgroundColor: 'white'
         },
-        nav: {
+        innerWrap: {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center'
         },
-        listaCabecera: {
+        logoCabeceraDesktop: {
+            '@media (max-width: 800px)': {
+                display: 'none'
+            }
+        },
+        listaContainerDesktop: {
+            '@media (max-width: 800px)': {
+                display: 'none'
+            }
+        },
+        listaCabeceraDesktop: {
             margin: '0.5rem 0',
+            padding: '0',
             listStyle: 'none',
             display: 'flex',
             justifyContent: 'space-evenly',
@@ -19,7 +30,24 @@ export const navBarStyle = theme => {
             '& li': {
                 padding: '0.5rem',
                 color: 'black',
-                cursor: 'pointer'
+                cursor: 'pointer',
+            }
+        },
+        logoCabeceraMobile: {
+            display: 'none',
+            '@media (max-width: 800px)': {
+                display: 'flex'
+            }
+        },
+        listaContainerMobile: {
+            display: 'none',
+            '@media (max-width: 800px)': {
+                display: 'flex'
+            },
+            '& > button':{
+                border: 'none',
+                background: 'none',
+                color: 'rgba(0, 0, 0, 0.36)'
             }
         }
     })
