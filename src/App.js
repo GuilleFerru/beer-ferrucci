@@ -1,36 +1,20 @@
 //import logo from './logo.svg';
 import './App.css';
-import {NavBar} from './components/NavBar/NavBar';
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;
-
+import { ItemListContainer } from './components/ItemListContainer/ItemListContainer';
+import { NavBar } from './components/NavBar/NavBar';
+//import { NotFoundComponent } from './components/NotFoundComponent/NotFoundComponent';
+//import imgPageNotFound from './img/imgPageNotFound.jpg';
 
 const App = props => {
   return <>
-  <NavBar />
-  
-</>
+    <NavBar />
+    <ItemListContainer greeting="PROXIMAMENTE BIRRA A LA VENTA" />
+    {/* <NotFoundComponent titulo='Ups! Pagina incorrecta' 
+      img={imgPageNotFound} 
+      alt='Imagen de pagina icorrecta' 
+      action={()=> console.log('Boton')}
+    /> */}
+  </>
 }
 
 export default App;

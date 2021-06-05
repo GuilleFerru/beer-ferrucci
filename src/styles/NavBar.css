@@ -1,4 +1,4 @@
-header {
+/* header {
     font-family: 'poppins';
     padding: 0.5rem 0.8rem 0;
     background-color: white;
@@ -22,38 +22,38 @@ nav {
     padding: 0.5rem;
     color: black;
     cursor: pointer;
-}
+} */
 
-.logoCarrito {
+/* .logoCarrito {
     padding: 0.2rem;
     display: flex;
-}
+} */
 
-.logoCarrito a {
+/* .logoCarrito a {
     text-decoration: none;
-}
+} */
 
-.carritoNombre {
+/* .carritoNombre {
     display: flex;
     flex-direction: column;
     align-items: center;
     color:rgba(0, 0, 0, 0.36);
     transition: 1s;
-}
+} */
 
-.carritoNombre:hover{
+/* .carritoNombre:hover{
     color: black;
-}
+} */
 
-.parrafoCarrito {
+/* .parrafoCarrito {
     margin: 0;
     font-size: 0.75rem;
-}
+} */
 
-.carritoPrecio{
+/* .carritoPrecio{
     font-size: 0.95rem;
-}
+} */
 
-.popupCarroVacio {
+/* .popupCarroVacio {
     display: none;
-}
+} */
