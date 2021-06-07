@@ -8,7 +8,7 @@ import { NavBar } from './components/NavBar/NavBar';
 const App = props => {
   return <>
     <NavBar />
-    <ItemListContainer greeting="PROXIMAMENTE BIRRA A LA VENTA" />
+    <ItemListContainer greeting="Birra" />
     {/* <NotFoundComponent titulo='Ups! Pagina incorrecta' 
       img={imgPageNotFound} 
       alt='Imagen de pagina icorrecta' 
