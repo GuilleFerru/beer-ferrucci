@@ -11,27 +11,29 @@ const useStyles = makeStyles((theme) => itemCountStyle(theme));
 export const ItemCount = (props) => {
     const classes = useStyles();
     const { stock, initial } = props;
-    const [count, setCount] = useState(1);
+    const [count, setCount] = useState(initial);
     const [buttonToggle, setButtonToggle] = useState(false);
 
     const onAdd = (e) => {
-        if (count === 0) {
-            //setButtonToggle(true)
-        } else if (count > 0 && count <= stock)
-            //setButtonToggle(false)
+        if (count > 0 && count <= stock) {
             console.log(`El usuario selecciono ${count} birras`)
+        }
     }
 
     const removeItem = () => {
         if (count !== 0) {
             setCount(count - 1)
+            if (count === 1) {
+                setButtonToggle(true)
+            }
         }
     }
 
     const addItem = () => {
         if (count !== stock) {
             setCount(count + 1)
-        } 
+            setButtonToggle(false)
+        }
     }
 
     return <section>
@@ -45,7 +47,7 @@ export const ItemCount = (props) => {
                         </button>
 
                     </div>
-                    <input type='text' placeholder={initial} value={count} onChange={e => console.log ('no hace nada porque??')}></input>
+                    <span>{count}</span>
                     <div className={classes.inputGroupAppend}>
                         <button onClick={e => addItem()}>
                             <AddRoundedIcon fontSize='small' />
@@ -53,7 +55,7 @@ export const ItemCount = (props) => {
                     </div>
                 </div>
             </div>
-            <button disabled={buttonToggle} onClick={onAdd}> 
+            <button disabled={buttonToggle} onClick={e => count === 0 ? undefined : onAdd()}>
                 <AddShoppingCartTwoToneIcon />
                 AÑADIR AL CARRITO
                 </button>

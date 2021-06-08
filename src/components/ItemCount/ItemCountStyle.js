@@ -2,7 +2,7 @@ export const itemCountStyle = () => {
     return ({
         itemCountContainer:{
             fontFamily: 'poppins',
-            //border: '1px solid red',
+            // border: '1px solid red',
             display:'flex',
             flexFlow: 'column nowrap',
             rowGap: '1rem',
@@ -31,24 +31,24 @@ export const itemCountStyle = () => {
             alignItems:'center',
             columnGap: '1rem'
         },
-        inputGroup: {
+        inputGroup: {      
             display: 'flex',
             flexFlow: 'row nowrap',
             alignItems: 'center',
             justifyContent:'center',
             border: '1px solid #d7d7d7',
-            
             '& > div > button':{
                 display:'flex',
                 alignItems:'center',
-                border: 'transparent',
-                cursor: 'pointer'
-                
+                backgroundColor: 'transparent',
+                border: 'none',
+                cursor: 'pointer',
             },
-            '& > input':{
+            '& > span':{
                 border: 'transparent',
+                width:'4.4rem',
                 textAlign: 'center',
-                fontSize:'1,4rem',        
+                fontSize:'1rem',        
                 
             }
         }
