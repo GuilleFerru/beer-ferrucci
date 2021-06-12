@@ -8,7 +8,7 @@ export const itemListContainerStyle = theme => {
             alignItems: 'center',
             width: 'fit-content',
             background: 'white',
-            margin: '1rem 0 0',
+            margin: '1rem 0 0 1rem',
             padding:'1rem',
             '& h5': {
                 color: 'black',
