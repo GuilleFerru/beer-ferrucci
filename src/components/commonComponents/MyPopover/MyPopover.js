@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => myPopoverStyle(theme));
 
 export const MyPopover = (props) => {
     const classes = useStyles();
-    const { divRef } = props;
+    const { divRef,texto } = props;
     const [anchorEl, setAnchorEl] = useState(divRef);
 
     const handleClose = () => {
@@ -32,7 +32,7 @@ export const MyPopover = (props) => {
                 horizontal: 'left',
             }}
         >
-            <div className={classes.popoverStock}>Stock Maximo</div>
+            <div className={classes.popoverStock}>{texto}</div>
         </Popover>
     </>
 }

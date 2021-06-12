@@ -58,7 +58,7 @@ export const ItemCount = (props) => {
 
             {count === 10 &&
             
-                <MyPopover divRef = {divRef.current}/>
+                <MyPopover divRef={divRef.current} texto='Stock Maximo'/>
             }
 
         </div>
