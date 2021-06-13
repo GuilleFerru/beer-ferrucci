@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import { itemCountStyle } from './ItemCountStyle';
-import {MyPopover} from '../commonComponents/MyPopover/MyPopover';
+import { MyPopover } from '../commonComponents/MyPopover/MyPopover';
 import RemoveRoundedIcon from '@material-ui/icons/RemoveRounded';
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import AddShoppingCartTwoToneIcon from '@material-ui/icons/AddShoppingCartTwoTone';
@@ -13,7 +13,7 @@ export const ItemCount = (props) => {
     const classes = useStyles();
     const { stock, initial } = props;
     const [count, setCount] = useState(initial);
-    
+
     const divRef = React.useRef();
 
     const onAdd = (e) => {
@@ -32,7 +32,7 @@ export const ItemCount = (props) => {
         }
     }
 
-    return <section>
+    return <>
         <div className={classes.itemCountContainer}>
             <div className={classes.cantidadInput} ref={divRef}>
                 <label>Qty:</label>
@@ -53,16 +53,10 @@ export const ItemCount = (props) => {
             <button disabled={count === 0} onClick={onAdd}>
                 <AddShoppingCartTwoToneIcon />
                 AÑADIR AL CARRITO
-                </button>
-
-
-            {count === 10 &&
-            
-                <MyPopover divRef={divRef.current} texto='Stock Maximo'/>
-            }
-
+            </button>
+            {count === stock && <MyPopover divRef={divRef.current} texto='Stock Maximo' />}
         </div>
-    </section>
+    </>
 
 }
 

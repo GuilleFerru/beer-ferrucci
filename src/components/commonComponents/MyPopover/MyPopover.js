@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => myPopoverStyle(theme));
 
 export const MyPopover = (props) => {
     const classes = useStyles();
-    const { divRef,texto } = props;
+    const { divRef, texto } = props;
     const [anchorEl, setAnchorEl] = useState(divRef);
 
     const handleClose = () => {
@@ -16,7 +16,7 @@ export const MyPopover = (props) => {
     };
     const open = Boolean(anchorEl);
     const id = open ? "simple-popover" : undefined;
-    
+
     return <>
         <Popover
             id={id}
@@ -30,8 +30,7 @@ export const MyPopover = (props) => {
             transformOrigin={{
                 vertical: 'bottom',
                 horizontal: 'left',
-            }}
-        >
+            }}>
             <div className={classes.popoverStock}>{texto}</div>
         </Popover>
     </>
