@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core'
-import { ItemCount } from '../ItemCount/ItemCount';
+// import { ItemCount } from '../ItemCount/ItemCount';
 import { itemStyle } from './ItemStyle';
 
 
@@ -22,7 +22,7 @@ export const Item = props => {
                     </bdi>
                 </div>
 
-                <ItemCount stock={cerveza.stock} initial={cerveza.initial} />
+                {/* <ItemCount stock={cerveza.stock} initial={cerveza.initial} /> */}
             </div>
         })}
 

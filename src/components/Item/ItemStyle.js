@@ -2,6 +2,7 @@ export const itemStyle = () => {
     return ({
         items: {
             // border: '1px solid blue',
+            
             fontFamily: 'poppins',
             display: 'flex',
             flexDirection: 'column',
@@ -10,6 +11,7 @@ export const itemStyle = () => {
             width: 'fit-content',
             background: 'white',
             padding: '2rem',
+            boxShadow: '-2px 2px 7px 0px rgba(0,0,0,0.75)',
             '@media (max-width: 800px)': {
                 margin: '1rem auto 1rem auto'
 
@@ -18,7 +20,7 @@ export const itemStyle = () => {
                 // border: '1px solid blue',
                 maxWidth: '100%',
                 height: 'auto',
-                transition: '0.5s ease-in-out',
+                transition: '1.2s ease-in-out',
                 '&:hover': {
                     transform: 'scale(1.1, 1.1)'
                 }

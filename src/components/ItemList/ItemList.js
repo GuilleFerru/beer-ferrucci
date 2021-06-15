@@ -15,7 +15,7 @@ const mockCall = () => {
                 { id: 5, title: 'OatMeal Stout', description: 'Cerveza Negra de trigo', price: '135', pictureUrl: '/img/saison.png', initial: 1, stock: 20 },
                 { id: 6, title: 'SixPack', description: 'SixPack de nuestras mejores cervezas', price: '980', pictureUrl: '/img/six-pack.png', initial: 1, stock: 5 },
             ])
-        }, 20);
+        }, 2000);
     })
 }
 
