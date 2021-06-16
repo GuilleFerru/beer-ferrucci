@@ -1,8 +1,7 @@
-import { PreloaderStyle } from '../commonComponents/MyPopover/MyPopoverStyle'
-
-export const itemListStyle = theme => {
+import { preloaderStyle } from '../../styles/PreloaderStyle';
+export const itemListContainerStyle = theme => {
     return ({
-        gridContainer: {
+        itemListContainer: {
             display:'grid',
             gridTemplateColumns: 'repeat(3,1fr)',
             justifyItems: 'center',
@@ -10,7 +9,9 @@ export const itemListStyle = theme => {
             rowGap:'1rem',
             columnGap:'1rem',
             margin:'1rem'
+            
         },
-        ...PreloaderStyle
+        ...preloaderStyle
     })
 }
+

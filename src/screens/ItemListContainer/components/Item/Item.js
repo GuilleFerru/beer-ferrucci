@@ -6,13 +6,11 @@ import { itemStyle } from './ItemStyle';
 
 const useStyles = makeStyles((theme) => itemStyle(theme));
 
-export const Item = props => {
+export const Item = cerveza => {
     const classes = useStyles();
-    const { cervezas } = props;
+    // const { cervezas } = props;
 
-    return <>
-        {cervezas.map((cerveza, i) => {
-            return <div className={classes.items} key={i}>
+    return <div className={classes.items}>
                 <img src={cerveza.pictureUrl} alt={cerveza.description} />
                 <div className={classes.itemText}>
                     <h3>{cerveza.title}</h3>
@@ -24,8 +22,5 @@ export const Item = props => {
 
                 {/* <ItemCount stock={cerveza.stock} initial={cerveza.initial} /> */}
             </div>
-        })}
 
-
-    </>
 }

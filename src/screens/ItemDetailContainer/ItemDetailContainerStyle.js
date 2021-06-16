@@ -1,5 +1,4 @@
-import { preloaderStyle } from '../commonComponents/Preloader/PreloaderStyle'
-
+import { preloaderStyle } from '../../styles/PreloaderStyle'
 export const itemDetailContainerStyle = theme => {
     return ({
         itemDetailContainer: {

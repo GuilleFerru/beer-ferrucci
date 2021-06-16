@@ -9,7 +9,6 @@ export const ItemDetail = props => {
     const classes = useStyles();
     const { producto } = props;
 
-    console.log(props)
     return <>
         {producto.map((cerveza, i) => {
             return <div className={classes.item} key={i}>

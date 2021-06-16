@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import 'poppins-font';
 import {makeStyles} from '@material-ui/core';
 import {itemDetailContainerStyle} from './ItemDetailContainerStyle';
-import {ItemDetail} from '../ItemDetail/ItemDetail';
+import {ItemDetail} from './components/ItemDetail/ItemDetail';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const mockCall = () => {
