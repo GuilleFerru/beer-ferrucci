@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import { itemCountStyle } from './ItemCountStyle';
-import { MyPopover } from '../commonComponents/MyPopover/MyPopover';
+import { MyPopover } from '../../../../components/commonComponents/MyPopover/MyPopover';
 import RemoveRoundedIcon from '@material-ui/icons/RemoveRounded';
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import AddShoppingCartTwoToneIcon from '@material-ui/icons/AddShoppingCartTwoTone';
