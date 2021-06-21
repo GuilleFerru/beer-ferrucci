@@ -31,6 +31,11 @@ export const navBarStyle = theme => {
                 padding: '0.5rem',
                 color: 'black',
                 cursor: 'pointer',
+                '& a':{
+                    textDecoration: 'none',
+                    color: 'inherit'
+                }
+            
             }
         },
         logoCabeceraMobile: {

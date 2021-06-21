@@ -1,37 +1,30 @@
 import React, { useState, useEffect } from 'react';
+import { useParams, Redirect } from 'react-router-dom';
+import { itemListContainerStyle } from './ItemListContainerStyle';
+import { cervezaData } from '../Services/CervezaData';
+import { ItemList } from './components/ItemList/ItemList';
 import 'poppins-font';
 import { makeStyles } from '@material-ui/core';
-import { itemListContainerStyle } from './ItemListContainerStyle';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { ItemList } from './components/ItemList/ItemList';
-
-const mockCall = () => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve([
-                { id: 1, title: 'Dorada Pampeana', description: 'Cerveza Dorada de suave sabor', price: '110', pictureUrl: '/img/dorada-pampeana.png', initial: 1, stock: 30 },
-                { id: 2, title: 'Irish Red', description: 'Cerveza Roja de frutado sabor', price: '120', pictureUrl: '/img/irish-red.png', initial: 1, stock: 80 },
-                { id: 3, title: 'IPA', description: 'Cerveza de intenso sabor', price: '130', pictureUrl: '/img/ipa.png', initial: 1, stock: 50 },
-                { id: 4, title: 'Saison', description: 'Cerveza Rubia con frutillas', price: '135', pictureUrl: '/img/oatmeal-black.png', initial: 1, stock: 20 },
-                { id: 5, title: 'OatMeal Stout', description: 'Cerveza Negra de trigo', price: '135', pictureUrl: '/img/saison.png', initial: 1, stock: 20 },
-                { id: 6, title: 'SixPack', description: 'SixPack de nuestras mejores cervezas', price: '980', pictureUrl: '/img/six-pack.png', initial: 1, stock: 5 },
-            ])
-        }, 2000);
-    })
-}
 
 const useStyles = makeStyles((theme) => itemListContainerStyle(theme));
 
+const promise = new Promise((resolve, reject) => {
+    setTimeout(() => resolve(cervezaData),2000)
+})
+
 export const ItemListContainer = () => {
     const classes = useStyles();
+    const { category } = useParams();
     const [cervezas, setCervezas] = useState([]);
+    
 
     useEffect(() => {
-        mockCall().then(data => {
-            setCervezas(data);
-
-        })
+        promise.then(data => { setCervezas(data) }).catch(() => <Redirect to={'/notFound'} />)
     }, [])
+
+
+    const filterByCategory = listOfCervezas => { return category === undefined ? listOfCervezas : listOfCervezas.filter(cerveza => cerveza.category === category) }
 
     return <>
         {cervezas.length === 0 ? (
@@ -41,7 +34,7 @@ export const ItemListContainer = () => {
 
         ) : (
             <section className={classes.itemListContainer}>
-                <ItemList cervezas={cervezas} />
+                <ItemList cervezas={filterByCategory(cervezas)} />
             </section>
         )}
     </>

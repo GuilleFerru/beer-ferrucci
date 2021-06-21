@@ -27,36 +27,34 @@ export const itemDetailStyle = theme => {
                 '&:hover': {
                     transform: 'scale(1.1, 1.1)'
                 }
-            },
-
+            }
         },
         itemText: {
-            display:'flex',
-            flexDirection:'column',
-            justifyContent:'flex-start',
-            alignSelf:'flex-start',
-            rowGap:'1rem',
-            padding:'1rem',
-            '& h1':{ 
-                margin:'0rem'
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-start',
+            alignSelf: 'flex-start',
+            rowGap: '1rem',
+            padding: '1rem',
+            '& h1': {
+                margin: '0rem'
             },
-            '& span':{
+            '& span': {
                 // border: '1px solid black',
-                maxWidth:'25rem',
+                maxWidth: '25rem',
                 color: '#666',
-                fontWeight:'300',
+                fontWeight: '300',
                 textAlign: 'justify',
-                textHustify: 'inter-word',
-                padding:'0'
+                textJustify: 'inter-word',
+                padding: '0'
             },
-            '& p':{
-                fontSize:'1.5rem',
+            '& p': {
+                fontSize: '1.5rem',
                 color: '#000',
-                margin:'0',
-                letterSpacing:'0px',
-                
+                margin: '0',
+                letterSpacing: '0px',
             }
         }
-        
+
     })
 }

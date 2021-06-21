@@ -34,9 +34,9 @@ export const ItemCount = (props) => {
 
     return <>
         <div className={classes.itemCountContainer}>
-            <div className={classes.cantidadInput} ref={divRef}>
+            <div className={classes.cantidadInput} >
                 <label>Qty:</label>
-                <div className={classes.inputGroup}>
+                <div className={classes.inputGroup} ref={divRef}>
                     <div className={classes.inputGroupPrepend}>
                         <button onClick={removeItem}>
                             <RemoveRoundedIcon fontSize='small' />
@@ -59,26 +59,3 @@ export const ItemCount = (props) => {
     </>
 
 }
-
-
-
-
-
-
-
-// <Snackbar
-//                 open={true}
-//                 autoHideDuration={20000}
-//                 onClose={() => setShowSnack(false)}
-//                 action={
-//                     <IconButton
-//                         arial-label='close'
-//                         close='inherit'
-//                         onClick={() => setShowSnack(false)}>
-//                         <CloseIcon />
-//                     </IconButton>
-//                 }>
-//                 <Alert onClose={() => setShowSnack(false)} severity="warning">
-//                     Stock Maximo
-//                 </Alert>
-//             </Snackbar>

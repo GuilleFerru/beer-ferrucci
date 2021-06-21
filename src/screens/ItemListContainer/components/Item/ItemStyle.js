@@ -1,8 +1,6 @@
 export const itemStyle = () => {
     return ({
         items: {
-            // border: '1px solid blue',
-            
             fontFamily: 'poppins',
             display: 'flex',
             flexDirection: 'column',
@@ -17,7 +15,6 @@ export const itemStyle = () => {
 
             },
             '& img': {
-                // border: '1px solid blue',
                 maxWidth: '100%',
                 height: 'auto',
                 transition: '1.2s ease-in-out',
@@ -33,6 +30,7 @@ export const itemStyle = () => {
             justifyContent:'flex-start',
             alignSelf:'flex-start',
             padding:'1rem',
+            cursor: 'pointer',
             '& h3':{
                 margin:'0'
             },
@@ -42,6 +40,10 @@ export const itemStyle = () => {
             '& p':{
                 color: '#ef837b',
                 margin:'0'
+            }, 
+            '& a, a:hover, a:focus, a:active  ': {
+                textDecoration: 'none !important',
+                color: 'inherit !important'
             }
         }
 
