@@ -1,10 +1,11 @@
+import {button} from '../../../../styles/ButtonStyle'
 export const itemDetailStyle = theme => {
     return ({
         item: {
             // border: '1px solid blue',
             display: 'flex',
             flexFlow: 'row wrap',
-            flexDirection: 'row',
+            // flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
             columnGap: '1.5rem',
@@ -53,8 +54,18 @@ export const itemDetailStyle = theme => {
                 color: '#000',
                 margin: '0',
                 letterSpacing: '0px',
-            }
-        }
+            },
+        },
+        buttonGroup:{
+            // border: '1px solid red',
+            display: 'flex',
+            flexFlow: 'column nowrap',
+            rowGap: '1rem',
+            ...button
+
+        },
+        
+        
 
     })
 }

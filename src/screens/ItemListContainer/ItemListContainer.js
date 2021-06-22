@@ -20,7 +20,7 @@ export const ItemListContainer = () => {
     
 
     useEffect(() => {
-        promise.then(data => { setCervezas(data) }).catch(() => <Redirect to={'/notFound'} />)
+        promise.then(data => { setCervezas(data) }).catch(() => <Redirect to={'/*'} />)
     }, [])
 
 

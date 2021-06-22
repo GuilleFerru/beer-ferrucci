@@ -11,7 +11,7 @@ import { useParams, Redirect } from 'react-router-dom';
 const useStyles = makeStyles((theme) => itemDetailContainerStyle(theme));
 
 const promise = new Promise((resolve, reject) => {
-    setTimeout(() => resolve(cervezaData), 2000)
+    setTimeout(() => resolve(cervezaData), )
 })
 
 export const ItemDetailContainer = () => {
@@ -23,7 +23,7 @@ export const ItemDetailContainer = () => {
         promise.then((data) => {
             const dataFiltrada = data.filter(cerveza => cerveza.id === id);
             setItem(dataFiltrada)
-        }).catch(() => <Redirect to={'/notFound'} />)
+        }).catch(() => <Redirect to={'/*'} />)
     }, [id])
 
 

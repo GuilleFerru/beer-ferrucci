@@ -9,28 +9,13 @@ import AddShoppingCartTwoToneIcon from '@material-ui/icons/AddShoppingCartTwoTon
 
 const useStyles = makeStyles((theme) => itemCountStyle(theme));
 
-export const ItemCount = (props) => {
+export const ItemCount = ({stock, initial, qty, addToCart}) => {
     const classes = useStyles();
-    const { stock, initial } = props;
-    const [count, setCount] = useState(initial);
+    const [count, setCount] = useState(initial > qty ? initial : qty);
 
     const divRef = React.useRef();
 
-    const onAdd = (e) => {
-        console.log(`El usuario selecciono ${count} birras`)
-    }
-
-    const removeItem = () => {
-        if (count > initial) {
-            setCount(count - 1)
-        }
-    }
-
-    const addItem = (e) => {
-        if (count < stock) {
-            setCount(count + 1)
-        }
-    }
+    console.log('count ' + count)
 
     return <>
         <div className={classes.itemCountContainer}>
@@ -38,19 +23,19 @@ export const ItemCount = (props) => {
                 <label>Qty:</label>
                 <div className={classes.inputGroup} ref={divRef}>
                     <div className={classes.inputGroupPrepend}>
-                        <button onClick={removeItem}>
+                    <button onClick={()=> count === initial ? setCount(count): setCount(count - 1)}>
                             <RemoveRoundedIcon fontSize='small' />
                         </button>
                     </div>
                     <span>{count}</span>
                     <div className={classes.inputGroupAppend}>
-                        <button onClick={addItem}>
+                        <button onClick={()=> count === stock ? setCount(count): setCount(count + 1)}>
                             <AddRoundedIcon fontSize='small' />
                         </button>
                     </div>
                 </div>
             </div>
-            <button disabled={count === 0} onClick={onAdd}>
+            <button disabled={count === 0} onClick={()=> addToCart(count)}>
                 <AddShoppingCartTwoToneIcon />
                 AÑADIR AL CARRITO
             </button>

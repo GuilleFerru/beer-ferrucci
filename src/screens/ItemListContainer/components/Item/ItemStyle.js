@@ -21,8 +21,11 @@ export const itemStyle = () => {
                 '&:hover': {
                     transform: 'scale(1.1, 1.1)'
                 }
-            },
-
+            },            
+            '& a, a:hover, a:focus, a:active  ': {
+                textDecoration: 'none !important',
+                color: 'inherit !important'
+            }
         },
         itemText: {
             display:'flex',
@@ -40,10 +43,6 @@ export const itemStyle = () => {
             '& p':{
                 color: '#ef837b',
                 margin:'0'
-            }, 
-            '& a, a:hover, a:focus, a:active  ': {
-                textDecoration: 'none !important',
-                color: 'inherit !important'
             }
         }
 
