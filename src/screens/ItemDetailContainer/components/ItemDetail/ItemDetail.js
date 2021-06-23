@@ -17,24 +17,22 @@ export const ItemDetail = (props) => {
 
   const onAdd = value => { setQty(value); setClick(true); }
 
-  return <>
-    <div className={classes.item}>
-      <img src={cerveza.pictureUrl} alt={cerveza.description} />
-      <div className={classes.itemText}>
-        <h1>{cerveza.title}</h1>
-        <span>{cerveza.narrative}</span>
-        <bdi>
-          <p>${cerveza.price}</p>
-        </bdi>
-        {click ? (
-          <div className={classes.buttonGroup}>
-            <button onClick={() => history.push(`/cart?qty=${qty}`)}> Finalizar Compra </button>
-            <button onClick={() => setClick(false)}> Cancelar Compra </button>
-          </div>
-        ) : (
-          <ItemCount stock={cerveza.stock} initial={cerveza.initial} qty={qty} addToCart={onAdd} />
-        )}
-      </div>
+  return <div className={classes.item}>
+    <img src={cerveza.pictureUrl} alt={cerveza.description} />
+    <div className={classes.itemText}>
+      <h1>{cerveza.title}</h1>
+      <span>{cerveza.narrative}</span>
+      <bdi>
+        <p>${cerveza.price}</p>
+      </bdi>
+      {click ? (
+        <div className={classes.buttonGroup}>
+          <button onClick={() => history.push(`/cart?qty=${qty}`)}> Finalizar Compra </button>
+          <button onClick={() => setClick(!click)}> Cancelar Compra </button>
+        </div>
+      ) : (
+        <ItemCount stock={cerveza.stock} initial={cerveza.initial} qty={qty} addToCart={onAdd} />
+      )}
     </div>
-  </>
+  </div>
 };

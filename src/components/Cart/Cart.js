@@ -13,7 +13,6 @@ export const Cart = () =>{
     return <section className={classes.estilosProvisorios}>
     <h1>COMPONENTE EN DESARROLLO</h1>
     <button onClick={() => history.goBack()}>Volver</button>
-
     </section>
 
 }

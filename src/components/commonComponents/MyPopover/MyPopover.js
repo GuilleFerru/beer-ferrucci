@@ -17,22 +17,21 @@ export const MyPopover = (props) => {
     const open = Boolean(anchorEl);
     const id = open ? "simple-popover" : undefined;
 
-    return <>
-        <Popover
-            id={id}
-            open={open}
-            anchorEl={anchorEl}
-            onClose={handleClose}
-            anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            transformOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-            }}>
-            <div className={classes.popoverStock}>{texto}</div>
-        </Popover>
-    </>
+    return <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+        }}
+        transformOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+        }}>
+        <div className={classes.popoverStock}>{texto}</div>
+    </Popover>
+
 }
 

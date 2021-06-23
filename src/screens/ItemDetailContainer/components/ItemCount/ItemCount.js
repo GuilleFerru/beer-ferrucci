@@ -9,7 +9,7 @@ import AddShoppingCartTwoToneIcon from '@material-ui/icons/AddShoppingCartTwoTon
 
 const useStyles = makeStyles((theme) => itemCountStyle(theme));
 
-export const ItemCount = ({stock, initial, qty, addToCart}) => {
+export const ItemCount = ({ stock, initial, qty, addToCart }) => {
     const classes = useStyles();
     const [count, setCount] = useState(initial > qty ? initial : qty);
 
@@ -17,30 +17,29 @@ export const ItemCount = ({stock, initial, qty, addToCart}) => {
 
     console.log('count ' + count)
 
-    return <>
-        <div className={classes.itemCountContainer}>
-            <div className={classes.cantidadInput} >
-                <label>Qty:</label>
-                <div className={classes.inputGroup} ref={divRef}>
-                    <div className={classes.inputGroupPrepend}>
-                    <button onClick={()=> count === initial ? setCount(count): setCount(count - 1)}>
-                            <RemoveRoundedIcon fontSize='small' />
-                        </button>
-                    </div>
-                    <span>{count}</span>
-                    <div className={classes.inputGroupAppend}>
-                        <button onClick={()=> count === stock ? setCount(count): setCount(count + 1)}>
-                            <AddRoundedIcon fontSize='small' />
-                        </button>
-                    </div>
+    return <div className={classes.itemCountContainer}>
+        <div className={classes.cantidadInput} >
+            <label>Qty:</label>
+            <div className={classes.inputGroup} ref={divRef}>
+                <div className={classes.inputGroupPrepend}>
+                    <button onClick={() => count === initial ? setCount(count) : setCount(count - 1)}>
+                        <RemoveRoundedIcon fontSize='small' />
+                    </button>
+                </div>
+                <span>{count}</span>
+                <div className={classes.inputGroupAppend}>
+                    <button onClick={() => count === stock ? setCount(count) : setCount(count + 1)}>
+                        <AddRoundedIcon fontSize='small' />
+                    </button>
                 </div>
             </div>
-            <button disabled={count === 0} onClick={()=> addToCart(count)}>
-                <AddShoppingCartTwoToneIcon />
-                AÑADIR AL CARRITO
-            </button>
-            {count === stock && <MyPopover divRef={divRef.current} texto='Stock Maximo' />}
         </div>
-    </>
+        <button disabled={count === 0} onClick={() => addToCart(count)}>
+            <AddShoppingCartTwoToneIcon />
+            AÑADIR AL CARRITO
+        </button>
+        {count === stock && <MyPopover divRef={divRef.current} texto='Stock Maximo' />}
+    </div>
+
 
 }
