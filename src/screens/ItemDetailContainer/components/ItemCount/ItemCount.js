@@ -15,7 +15,6 @@ export const ItemCount = ({ stock, initial, qty, addToCart }) => {
 
     const divRef = React.useRef();
 
-    console.log('count ' + count)
 
     return <div className={classes.itemCountContainer}>
         <div className={classes.cantidadInput} >

@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { ItemListContainer } from '../screens/ItemListContainer/ItemListContainer';
 import { ItemDetailContainer } from '../screens/ItemDetailContainer/ItemDetailContainer';
+
 import { Cart } from '../components/Cart/Cart';
 import { NotFoundComponent } from '../components/NotFoundComponent/NotFoundComponent';
 
@@ -15,7 +16,9 @@ export const Router = () => {
             <ItemListContainer />
         </Route>
         <Route path="/item/:id">
-            <ItemDetailContainer />
+            
+                <ItemDetailContainer />
+            
         </Route>
         <Route path="/cart">
             <Cart />
