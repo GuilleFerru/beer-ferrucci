@@ -1,4 +1,5 @@
-import React from 'react'; // siempre tiene que estar
+import React, { useContext } from 'react'; // siempre tiene que estar
+import { CartContext } from '../../context/CartContext';
 import { Link } from 'react-router-dom';
 import 'poppins-font';
 import logo from '../../img/main_logo.png';
@@ -20,6 +21,7 @@ export const NavBar = () => {
     const classes = useStyles();
     const beerBottle = 'beerBottle';
     const sixPack = 'sixPack';
+    const { items} = useContext(CartContext);
 
     return <header className={classes.container}>
         <nav className={classes.innerWrap}>
@@ -45,7 +47,7 @@ export const NavBar = () => {
                     <li>CONTACTANOS</li>
                 </ul>
             </div>
-            <CartWidget />
+            {items.length === 0 ? <div></div> :<CartWidget />}
         </nav>
     </header>
 }

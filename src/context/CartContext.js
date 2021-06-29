@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useState } from 'react';
 
 export const CartContext = createContext();
 
@@ -18,8 +18,11 @@ export const CartComponentContext = props => {
                 return item
             })
             setItems(updateItem)
+            sumaSubtotal();
         } else {
             setItems(orders => [...orders, order])
+            console.log(items)
+            sumaSubtotal();
         }
     }
 
@@ -28,6 +31,9 @@ export const CartComponentContext = props => {
     const clear = () =>{setItems([])}
 
     const sumaSubtotal = () =>{
+        console.log(subtotal)
+        // setSubTotal(subtotal*0)
+        console.log(subtotal)
         items.map((item)=>{
             setSubTotal(subtotal + (item.quantity * item.item.price));
             return subtotal;
@@ -35,9 +41,9 @@ export const CartComponentContext = props => {
 
     }
 
-    useEffect(() => {
-        console.log(items)
-    }, [items])
+    // useEffect(() => {
+    //     console.log(items)
+    // }, [items])
 
 
     return <CartContext.Provider value={{ addItems,removeItems, sumaSubtotal, subtotal, clear, items}}>

@@ -16,9 +16,7 @@ export const Router = () => {
             <ItemListContainer />
         </Route>
         <Route path="/item/:id">
-            
-                <ItemDetailContainer />
-            
+            <ItemDetailContainer />
         </Route>
         <Route path="/cart">
             <Cart />

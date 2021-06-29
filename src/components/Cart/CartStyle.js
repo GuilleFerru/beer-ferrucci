@@ -15,6 +15,17 @@ export const cartStyle = theme => {
             }
             
         },
+        emptyCartContainer:{
+            display: 'flex',
+            flexFlow: 'column nowrap',
+            justifyContent: 'center',
+            '& p':{
+                fontFamily: "Poppins",
+                fontWeight: '400',
+                color: '#777',
+                textTransform: 'none',
+            }
+        },
         tableShop: {
             // border: '1px solid red',
             borderTop: '1px solid',

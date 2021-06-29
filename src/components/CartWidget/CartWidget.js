@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { CartContext } from "../../context/CartContext";
 import 'poppins-font';
 import { makeStyles } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { cartWidgetStyle } from './CartWidgetStyle';
 import AddShoppingCartTwoToneIcon from '@material-ui/icons/AddShoppingCartTwoTone';
 
-
 const useStyles = makeStyles((theme) => cartWidgetStyle(theme));
 
 export const CartWidget = () => {
     const classes = useStyles();
+    const { subtotal } = useContext(CartContext);
+
 
     return <div className={classes.logoCarrito}>
         <Link to={`/cart`}>
@@ -20,7 +22,7 @@ export const CartWidget = () => {
         </Link>
         <span className={classes.carritoPrecio}>
             <bdi>
-                <span>$</span>0.00
+                <span>$</span>{subtotal}
             </bdi>
         </span>
         <div className={classes.popupCarroVacio}>

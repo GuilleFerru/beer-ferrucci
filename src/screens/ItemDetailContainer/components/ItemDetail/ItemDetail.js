@@ -14,13 +14,14 @@ export const ItemDetail = (props) => {
   const { cerveza } = props;
   const [qty, setQty] = useState(0);
   const [click, setClick] = useState(false);
-  const { addItems,clear} = useContext(CartContext);
+  const { addItems, clear} = useContext(CartContext);
   const divRef = React.useRef();
 
   const onAdd = value => {
     setQty(value);
     setClick(true);
     addItems({ item: cerveza, quantity: value });
+    
   };
 
   const cancelButton = () =>{
