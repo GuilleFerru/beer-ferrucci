@@ -47,7 +47,7 @@ export const NavBar = () => {
                     <li>CONTACTANOS</li>
                 </ul>
             </div>
-            {items.length === 0 ? <div></div> :<CartWidget />}
+            {items.length === 0 ? <div></div> : <CartWidget />}
         </nav>
     </header>
 }

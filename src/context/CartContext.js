@@ -9,44 +9,34 @@ export const CartComponentContext = props => {
 
 
     const addItems = order => {
+        const totalPrice = order.item.price * order.quantity;
+        setSubTotal(subtotal + totalPrice)
         if (items.find(item => item.item.id === order.item.id)) {
             const updateItem = items.map((item) => {
                 const totalQty = item.quantity + order.quantity;
                 if (item.item.id === order.item.id) {
                     return { ...item, quantity: totalQty }
-                } 
+                }
                 return item
             })
             setItems(updateItem)
-            sumaSubtotal();
         } else {
             setItems(orders => [...orders, order])
-            console.log(items)
-            sumaSubtotal();
         }
     }
 
-    const removeItems = id => setItems(items.filter((item) => item.item.id !== id))
-
-    const clear = () =>{setItems([])}
-
-    const sumaSubtotal = () =>{
-        console.log(subtotal)
-        // setSubTotal(subtotal*0)
-        console.log(subtotal)
-        items.map((item)=>{
-            setSubTotal(subtotal + (item.quantity * item.item.price));
-            return subtotal;
-        })
-
+    const removeItems = id => {
+        const removePrice = items.find(item => item.item.id === id);
+        setSubTotal(subtotal - (removePrice.item.price*removePrice.quantity));
+        setItems(items.filter((item) => item.item.id !== id));
     }
 
-    // useEffect(() => {
-    //     console.log(items)
-    // }, [items])
+    const clear = () => { 
+        setItems([]);
+        setSubTotal(0);
+    }
 
-
-    return <CartContext.Provider value={{ addItems,removeItems, sumaSubtotal, subtotal, clear, items}}>
+    return <CartContext.Provider value={{ addItems, removeItems, subtotal, clear, items }}>
         {props.children}
     </CartContext.Provider>
 
