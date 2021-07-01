@@ -23,9 +23,6 @@ export const cartWidgetStyle = theme => {
         },
         carritoPrecio: {
             fontSize: '0.95rem'
-        },
-        popupCarroVacio: {
-            display: 'none'
         }
     })
 }

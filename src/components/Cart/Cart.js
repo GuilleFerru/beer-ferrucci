@@ -9,7 +9,7 @@ import { useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => cartStyle(theme));
 
 
-const CartTotal = ({ items, subtotal }) => {
+const CartTotal = ({ subtotal }) => {
     const classes = useStyles();
     const history = useHistory();
     const { clear } = useContext(CartContext);
