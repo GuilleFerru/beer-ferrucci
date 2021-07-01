@@ -2,7 +2,6 @@ import { button } from '../../styles/ButtonStyle'
 export const cartStyle = theme => {
     return ({
         container: {
-            // border: '1px solid red',
             background: 'black',
             display: 'flex',
             flexFlow: 'row wrap',
@@ -27,12 +26,10 @@ export const cartStyle = theme => {
             }
         },
         tableShop: {
-            // border: '1px solid red',
             borderTop: '1px solid',
             borderBottom: '1px solid',
             borderColor: '#777',
             fontFamily: "Poppins",
-            
             fontWeight: '400',
             color: '#777',
             textTransform: 'none',
@@ -47,8 +44,6 @@ export const cartStyle = theme => {
                 padding: '1.4rem 1rem 1.4rem 0'
             },
             '& td':{
-                // borderTop: '1px solid',
-                // borderBottom: '1px solid',
                 borderColor: '#777',
                 padding: '1.5rem 1rem 1.5rem 0',
                 textAlign:'center',
