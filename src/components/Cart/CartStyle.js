@@ -32,6 +32,7 @@ export const cartStyle = theme => {
             borderBottom: '1px solid',
             borderColor: '#777',
             fontFamily: "Poppins",
+            
             fontWeight: '400',
             color: '#777',
             textTransform: 'none',
@@ -40,7 +41,7 @@ export const cartStyle = theme => {
             },
             '& th': {
                 fontWeight: '400',
-                fontSize: '1.4rem',
+                fontSize: '1.0rem',
                 lineHeight: '1.5',
                 color: '#999',
                 padding: '1.4rem 1rem 1.4rem 0'

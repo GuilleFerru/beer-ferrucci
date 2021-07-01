@@ -26,7 +26,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 const useStyles = makeStyles((theme) => itemListContainerStyle(theme));
 
 const promise = new Promise((resolve, reject) => {
-    setTimeout(() => resolve(cervezaData))
+    setTimeout(() => resolve(cervezaData),2000)
 })
 
 export const ItemListContainer = () => {

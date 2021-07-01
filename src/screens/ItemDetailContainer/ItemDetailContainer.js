@@ -11,7 +11,7 @@ import { useParams, Redirect } from 'react-router-dom';
 const useStyles = makeStyles((theme) => itemDetailContainerStyle(theme));
 
 const promise = new Promise((resolve, reject) => {
-    setTimeout(() => resolve(cervezaData), )
+    setTimeout(() => resolve(cervezaData), 2000)
 })
 
 export const ItemDetailContainer = () => {
