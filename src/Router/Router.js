@@ -12,7 +12,7 @@ export const Router = () => {
         <Route exact path="/">
             <ItemListContainer />
         </Route>
-        <Route path="/category/:category">
+        <Route path="/category/:categoryId">
             <ItemListContainer />
         </Route>
         <Route path="/item/:id">
