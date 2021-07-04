@@ -10,22 +10,11 @@ import { useParams } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => itemDetailContainerStyle(theme));
 
-// const promise = new Promise((resolve, reject) => {
-//     setTimeout(() => resolve(cervezaData), 2000)
-// })
-
 export const ItemDetailContainer = () => {
     const classes = useStyles();
     const [item, setItem] = useState([]);
     const { id } = useParams();
     const [loading, setLoading] = useState(true);
-
-    // useEffect(() => {
-    //     promise.then((data) => {
-    //         const dataFiltrada = data.filter(cerveza => cerveza.id === id);
-    //         setItem(dataFiltrada)
-    //     }).catch(() => <Redirect to={'/*'} />)
-    // }, [id])
 
     useEffect(() => {
         const itemCollection = dataBase.collection("cervezas");
@@ -37,16 +26,11 @@ export const ItemDetailContainer = () => {
             setItem([{ id: doc.id, ...doc.data() }])
         }).catch((error) => {
             console.log("Error getting document:", error);
+            return;
         }).finally(() => {
             setLoading(false)
         });
     }, [id])
-
-    // useEffect(() => {
-    //     console.log(item)
-    // }, [item])
-
-
 
     return <>
         {loading ? (

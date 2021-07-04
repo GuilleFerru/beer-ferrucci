@@ -55,17 +55,6 @@ export const itemDetailStyle = theme => {
                 margin: '0',
                 letterSpacing: '0px',
             },
-        },
-        buttonGroup:{
-            // border: '1px solid red',
-            display: 'flex',
-            flexFlow: 'column nowrap',
-            rowGap: '1rem',
-            ...button
-
-        },
-        
-        
-
+        }
     })
 }

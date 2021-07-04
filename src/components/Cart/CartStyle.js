@@ -75,7 +75,9 @@ export const cartStyle = theme => {
             display:'flex',
             flexFlow:'column nowrap',
             width:'20rem',
-
+            '& > div:nth-child(2)':{
+                margin: 'auto'
+            }
         },
         cartTotal:{
             display: 'flex',
@@ -98,7 +100,7 @@ export const cartStyle = theme => {
                 }
             }
         },
-        buttonGroup:{
+        carEmptyButtom:{
             margin:'auto',            
             display:'flex',
             flexFlow: 'column nowrap',

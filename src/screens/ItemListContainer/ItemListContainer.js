@@ -15,26 +15,23 @@ export const ItemListContainer = () => {
     const { categoryId } = useParams();
     const [cervezas, setCervezas] = useState([]);
     const [loading, setLoading] = useState(true);
-    // const [itemCollection, setItemCollection] = useState(dataBase.collection('cervezas'))
 
     useEffect(() => {
-
         let itemCollection;
         if (categoryId) {
             itemCollection = dataBase.collection("cervezas").where('category', '==', categoryId)
-            // setItemCollection(dataBase.collection("cervezas").where('category', '==', categoryId))
         } else {
             itemCollection = dataBase.collection("cervezas");
-            // setItemCollection(dataBase.collection("cervezas"))
         }
-
         itemCollection.get().then((querySnapshot) => {
             if (querySnapshot.size === 0) {
-                console.log('No results')
+                console.log('No results!')
+                return;
             }
             setCervezas(querySnapshot.docs.map(doc => { return { ...doc.data(), id: doc.id } }))
         }).catch((error) => {
             console.log("Error getting document:", error);
+            return;
         }).finally(() => {
             setLoading(false)
 
@@ -46,7 +43,6 @@ export const ItemListContainer = () => {
             <div className={classes.preloaderContainer}>
                 <CircularProgress size='6rem' color='inherit' />
             </div>
-
         ) : (
             <section className={classes.itemListContainer}>
                 <ItemList cervezas={cervezas} />

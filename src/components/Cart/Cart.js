@@ -1,7 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
+import 'poppins-font';
 import { makeStyles } from '@material-ui/core';
 import { CartContext } from "../../context/CartContext";
 import { cartStyle } from './CartStyle';
+import { DialogComponent } from '../commonComponents/Dialog/DialogComponent';
+import { Form } from '../Form/Form';
+import { ButtonGroup } from '../commonComponents/ButtonGroup/ButtonGroup';
 import CloseIcon from '@material-ui/icons/Close';
 import { useHistory } from "react-router-dom";
 // import { Link } from 'react-router-dom';
@@ -11,10 +15,9 @@ const useStyles = makeStyles((theme) => cartStyle(theme));
 
 const CartTotal = ({ subtotal }) => {
     const classes = useStyles();
-    const history = useHistory();
+    const [openDialog, setOpenDialog] = useState(false);
     const { clear } = useContext(CartContext);
-
-
+    
 
     return <aside className={classes.cartAside}>
         <div className={classes.cartTotal}>
@@ -34,11 +37,22 @@ const CartTotal = ({ subtotal }) => {
                 <span><bdi>$</bdi>{subtotal}</span>
             </div>
         </div>
-
-
-        <div className={classes.buttonGroup}>
-            <button onClick={() => history.push(`/cart`)}>Finalizar Compra </button>
-            <button onClick={clear}> Cancelar Compra </button>
+        <div>
+        <DialogComponent open={openDialog}
+            openDialog={setOpenDialog}
+            handleConfirm={() => setOpenDialog(false)}
+            closeDialog={() => setOpenDialog(false)}
+            title='Detalles de Facturación'
+            firstButton='Cancelar'
+            secondButton='Aceptar'
+        >
+            <Form/>
+        </DialogComponent>
+            <ButtonGroup style={{ margin: 'auto' }} handleConfirm={e => setOpenDialog(true)}
+                handleClose={clear}
+                firstButton='Finalizar Compra'
+                secondButton='Limpiar Carrito'
+            />
         </div>
     </aside>
 }
@@ -92,7 +106,7 @@ const EmptyCart = () => {
     const history = useHistory();
     return <div className={classes.emptyCartContainer}>
         <p>Tu carrito esta vacio</p>
-        <div className={classes.buttonGroup}>
+        <div className={classes.carEmptyButtom}>
             <button onClick={() => history.push(`/`)}> Volver al inicio </button>
         </div>
     </div>
@@ -104,7 +118,7 @@ export const Cart = () => {
     const { items, subtotal } = useContext(CartContext);
 
     return <section className={classes.container}>
-        {items.length === 0 ? (<EmptyCart />) : (
+        {items.length !== 0 ? (<EmptyCart />) : (
             <>
                 <ProductTable items={items} />
                 <CartTotal items={items} subtotal={subtotal} />

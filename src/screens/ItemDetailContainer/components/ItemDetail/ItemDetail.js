@@ -4,6 +4,7 @@ import { itemDetailStyle } from "./ItemDetailStyle";
 import { ItemCount } from '../ItemCount/ItemCount';
 import { useHistory } from "react-router-dom";
 import { CartContext } from "../../../../context/CartContext";
+import { ButtonGroup } from "../../../../components/commonComponents/ButtonGroup/ButtonGroup";
 // import { MyPopover } from "../../../../components/commonComponents/MyPopover/MyPopover"
 
 const useStyles = makeStyles((theme) => itemDetailStyle(theme));
@@ -14,7 +15,7 @@ export const ItemDetail = (props) => {
   const { cerveza } = props;
   const [qty, setQty] = useState(0);
   const [click, setClick] = useState(false);
-  const { addItems, clear} = useContext(CartContext);
+  const { addItems} = useContext(CartContext);
   const divRef = React.useRef();
 
   const onAdd = value => {
@@ -24,10 +25,10 @@ export const ItemDetail = (props) => {
     
   };
 
-  const cancelButton = () =>{
-    setClick(!click);
-    clear();
-  }
+  // const cancelButton = () =>{
+  //   setClick(!click);
+  //  clear();
+  // }
 
 
   return <div className={classes.item} ref={divRef}>
@@ -39,13 +40,12 @@ export const ItemDetail = (props) => {
         <p>${cerveza.price}</p>
       </bdi>
       {click ? (
-        <div className={classes.buttonGroup}>
-          <button onClick={() => history.push(`/cart`)}>Finalizar Compra </button>
-          <button onClick={() => cancelButton()}> Cancelar Compra </button>
-        </div>
+        <ButtonGroup handleConfirm={() => history.push(`/cart`)} handleClose={() => history.push(`/`)} firstButton='Ir a Carrito' secondButton='Seguir Comprando'/>
       ) : (
         <ItemCount stock={cerveza.stock} initial={cerveza.initial} qty={qty} addToCart={onAdd} />
       )}
     </div>
   </div>
 };
+
+

@@ -5,6 +5,7 @@ import { ItemDetailContainer } from '../screens/ItemDetailContainer/ItemDetailCo
 
 import { Cart } from '../components/Cart/Cart';
 import { NotFoundComponent } from '../components/NotFoundComponent/NotFoundComponent';
+import { DialogContainer } from '../components/commonComponents/Dialog/DialogContainer';
 
 
 export const Router = () => {
@@ -21,9 +22,13 @@ export const Router = () => {
         <Route path="/cart">
             <Cart />
         </Route>
+        <Route exact path="/dialogo">
+            <DialogContainer />
+        </Route>
         <Route path="/*">
             <NotFoundComponent />
         </Route>
+
     </Switch>
 }
 
