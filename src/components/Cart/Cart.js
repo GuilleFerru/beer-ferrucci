@@ -13,11 +13,25 @@ import { useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => cartStyle(theme));
 
 
-const CartTotal = ({ subtotal }) => {
+const CartTotal = ({ items, subtotal }) => {
     const classes = useStyles();
     const [openDialog, setOpenDialog] = useState(false);
+    const [buyer, setBuyer] = useState([]);
     const { clear } = useContext(CartContext);
-    
+
+    const closeDialog = (value) => {
+        setOpenDialog(value)
+    }
+
+    // useEffect (() => {
+    //     console.log('buyer',buyer)
+    // }, [buyer])
+
+    const createOrder = () =>{
+        console.log('create order')
+        console.log('buyer',buyer)
+    }
+
 
     return <aside className={classes.cartAside}>
         <div className={classes.cartTotal}>
@@ -38,16 +52,12 @@ const CartTotal = ({ subtotal }) => {
             </div>
         </div>
         <div>
-        <DialogComponent open={openDialog}
-            openDialog={setOpenDialog}
-            handleConfirm={() => setOpenDialog(false)}
-            closeDialog={() => setOpenDialog(false)}
-            title='Detalles de Facturación'
-            firstButton='Cancelar'
-            secondButton='Aceptar'
-        >
-            <Form/>
-        </DialogComponent>
+            <DialogComponent open={openDialog}
+                openDialog={setOpenDialog}
+                title='Detalles de Facturación'
+            >
+                <Form closeDialog={closeDialog} setBuyer={setBuyer} createOrder={createOrder} />
+            </DialogComponent>
             <ButtonGroup style={{ margin: 'auto' }} handleConfirm={e => setOpenDialog(true)}
                 handleClose={clear}
                 firstButton='Finalizar Compra'

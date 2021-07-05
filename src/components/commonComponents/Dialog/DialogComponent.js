@@ -1,13 +1,13 @@
 import React from 'react';
 import 'poppins-font';
-import { makeStyles, DialogTitle, DialogContent, DialogActions, Dialog } from '@material-ui/core'
+import { makeStyles, DialogTitle, DialogContent, Dialog } from '@material-ui/core'
 import { dialogComponentStyle } from './DialogComponentSytle';
-import { ButtonGroup } from '../ButtonGroup/ButtonGroup';
+
 
 const useStyles = makeStyles((theme) => dialogComponentStyle(theme));
 
 export const DialogComponent = props => {
-    const { open, openDialog, title, children, firstButton, secondButton, handleConfirm, closeDialog } = props;
+    const { open, openDialog, title, children, closeDialog } = props;
     const classes = useStyles();
 
     const handleClose = () => {
@@ -22,13 +22,13 @@ export const DialogComponent = props => {
         <DialogContent>
             {children}
         </DialogContent>
-        <DialogActions style={{ display: 'flex', justifyContent: 'center', flexFlow: 'row wrap' }}>
+        {/* <DialogActions style={{ display: 'flex', justifyContent: 'center', flexFlow: 'row wrap' }}>
             <ButtonGroup  handleConfirm={handleConfirm} 
             handleClose={handleClose} 
             firstButton={firstButton} 
             secondButton={secondButton}
             />
-        </DialogActions>
+        </DialogActions> */}
     </Dialog >
 
 }

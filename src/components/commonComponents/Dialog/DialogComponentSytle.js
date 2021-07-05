@@ -12,12 +12,7 @@ export const dialogComponentStyle = theme => {
             },
             '& .MuiDialogActions-root': {
                 fontFamily: 'poppins !important',
-                marginTop: '1em',
-                '& > div':{
-                    display: 'flex',
-                    flexFlow: 'row wrap',
-                    columnGap: '0.5em'
-                }
+                marginTop: '1em'
             }
         }
     })
