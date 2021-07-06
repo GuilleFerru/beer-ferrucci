@@ -13,19 +13,6 @@ import { dataBase } from '../../Firebase/firebase';
 
 const useStyles = makeStyles((theme) => cartStyle(theme));
 
-
-// const EmptyCart = () => {
-//     const classes = useStyles();
-//     const history = useHistory();
-//     return <div className={classes.emptyCartContainer}>
-//         <p>Tu carrito esta vacio</p>
-//         <div className={classes.carEmptyButtom}>
-//             <button onClick={() => history.push(`/`)}> Volver al inicio </button>
-//         </div>
-//     </div>
-// }
-
-
 export const Cart = () => {
     const classes = useStyles();
     const { items, subtotal, clear } = useContext(CartContext);
