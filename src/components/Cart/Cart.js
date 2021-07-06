@@ -3,135 +3,80 @@ import 'poppins-font';
 import { makeStyles } from '@material-ui/core';
 import { CartContext } from "../../context/CartContext";
 import { cartStyle } from './CartStyle';
-import { DialogComponent } from '../commonComponents/Dialog/DialogComponent';
-import { Form } from '../Form/Form';
-import { ButtonGroup } from '../commonComponents/ButtonGroup/ButtonGroup';
-import CloseIcon from '@material-ui/icons/Close';
-import { useHistory } from "react-router-dom";
-// import { Link } from 'react-router-dom';
+import { CartTable } from './components/CatTable/CartTable';
+import { CartTotal } from './components/CartTotal/CartTotal';
+import { CartEmpty} from './components/CartEmpty/CartEmpty';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import { dataBase } from '../../Firebase/firebase';
+
 
 const useStyles = makeStyles((theme) => cartStyle(theme));
 
 
-const CartTotal = ({ items, subtotal }) => {
-    const classes = useStyles();
-    const [openDialog, setOpenDialog] = useState(false);
-    const [buyer, setBuyer] = useState([]);
-    const { clear } = useContext(CartContext);
-
-    const closeDialog = (value) => {
-        setOpenDialog(value)
-    }
-
-    // useEffect (() => {
-    //     console.log('buyer',buyer)
-    // }, [buyer])
-
-    const createOrder = () =>{
-        console.log('create order')
-        console.log('buyer',buyer)
-    }
-
-
-    return <aside className={classes.cartAside}>
-        <div className={classes.cartTotal}>
-            <div>
-                <h2>Total del carrito</h2>
-            </div>
-            <div>
-                <p>Subtotal</p>
-                <span><bdi>$</bdi>{subtotal}</span>
-            </div>
-            <div>
-                <p>Envío</p>
-                <span><bdi>$</bdi>0</span>
-            </div>
-            <div>
-                <p>Total</p>
-                <span><bdi>$</bdi>{subtotal}</span>
-            </div>
-        </div>
-        <div>
-            <DialogComponent open={openDialog}
-                openDialog={setOpenDialog}
-                title='Detalles de Facturación'
-            >
-                <Form closeDialog={closeDialog} setBuyer={setBuyer} createOrder={createOrder} />
-            </DialogComponent>
-            <ButtonGroup style={{ margin: 'auto' }} handleConfirm={e => setOpenDialog(true)}
-                handleClose={clear}
-                firstButton='Finalizar Compra'
-                secondButton='Limpiar Carrito'
-            />
-        </div>
-    </aside>
-}
-
-
-const ProductTable = ({ items }) => {
-    const classes = useStyles();
-    const { removeItems } = useContext(CartContext);
-
-    return <div>
-        <div>
-            <table className={classes.tableShop}>
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Producto</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>
-                        <th>Total</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {items.map((item, i) => {
-                        // setTotal(total + (item.quantity * item.item.price));
-                        return <tr key={i}>
-                            <td>  <img src={item.item.pictureTwoUrl} alt={item.item.description} /></td>
-                            <td>{item.item.title}</td>
-                            <td>{item.item.price}</td>
-                            <td>{item.quantity}</td>
-                            <td>
-                                <bdi>
-                                    <span>$</span>{item.quantity * item.item.price}
-                                </bdi>
-                            </td>
-                            <td>
-                                <button onClick={e => removeItems(item.item.id)}><CloseIcon /></button>
-                            </td>
-                        </tr>
-                    })
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
-}
-
-
-const EmptyCart = () => {
-    const classes = useStyles();
-    const history = useHistory();
-    return <div className={classes.emptyCartContainer}>
-        <p>Tu carrito esta vacio</p>
-        <div className={classes.carEmptyButtom}>
-            <button onClick={() => history.push(`/`)}> Volver al inicio </button>
-        </div>
-    </div>
-}
+// const EmptyCart = () => {
+//     const classes = useStyles();
+//     const history = useHistory();
+//     return <div className={classes.emptyCartContainer}>
+//         <p>Tu carrito esta vacio</p>
+//         <div className={classes.carEmptyButtom}>
+//             <button onClick={() => history.push(`/`)}> Volver al inicio </button>
+//         </div>
+//     </div>
+// }
 
 
 export const Cart = () => {
     const classes = useStyles();
-    const { items, subtotal } = useContext(CartContext);
+    const { items, subtotal, clear } = useContext(CartContext);
+    const [idOrder, setIdOrder] = useState([]);
+
+    const createOrder = (buyer) => {
+        console.log('create order')
+        console.log('buyer', buyer)
+        const orders = dataBase.collection("orders");
+        const newOrder = {
+            buyer,
+            items,
+            date: firebase.firestore.Timestamp.fromDate(new Date()),
+            total: subtotal
+        }
+        orders.add(newOrder).then(({ id }) => {
+            setIdOrder(id);
+        }).catch(err => {
+            console.log(err)
+        }).finally(() => {
+            console.log(idOrder)
+        })
+
+        const updateItem = dataBase.collection('cervezas').where(firebase.firestore.FieldPath.documentId(), 'in', items.map((item) => item.item.id))
+
+        updateItem.get().then(querySnapshot => {
+            const batch = dataBase.batch();
+            const outOfStock = [];
+
+            querySnapshot.docs.forEach((docSnapshot, idx) => {
+                if (docSnapshot.data().stock >= items[idx].quantity) {
+                    batch.update(docSnapshot.ref, { stock: docSnapshot.data().stock - items[idx].quantity });
+                    clear();
+
+                } else {
+                    outOfStock.push({ ...docSnapshot.data(), id: docSnapshot.id });
+                }
+            })
+            if (outOfStock.length === 0) {
+                batch.commit().then(() => { })
+            }else{
+                console.log('no tenes stock')
+            }
+        })
+    }
 
     return <section className={classes.container}>
-        {items.length !== 0 ? (<EmptyCart />) : (
+        {items.length === 0 ? (<CartEmpty />) : (
             <>
-                <ProductTable items={items} />
-                <CartTotal items={items} subtotal={subtotal} />
+                <CartTable items={items} />
+                <CartTotal items={items} subtotal={subtotal} createOrder={createOrder} />
             </>
         )}
     </section>

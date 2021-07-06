@@ -23,7 +23,7 @@ const initialInfo = {
 
 const useStyles = makeStyles((theme) => formStyle(theme));
 
-export const Form = ({ closeDialog, setBuyer, createOrder }) => {
+export const Form = ({ closeDialog,  createOrder }) => {
     const [userInfo, setUserInfo] = useState(initialInfo)
     const classes = useStyles();
 
@@ -36,8 +36,8 @@ export const Form = ({ closeDialog, setBuyer, createOrder }) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        setBuyer(userInfo)
-        createOrder();
+        // setBuyer(userInfo)
+        createOrder(userInfo);
         closeDialog(false)
 
     }
