@@ -1,5 +1,5 @@
 import { button } from '../../../../styles/ButtonStyle';
-export const cartEmptyStyle = theme => {
+export const cartMessageStyle = theme => {
     return ({
         cartEmptyContainer:{
             display: 'flex',
