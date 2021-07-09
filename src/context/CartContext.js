@@ -4,10 +4,10 @@ export const CartContext = createContext();
 
 export const CartComponentContext = props => {
 
-    const [items, setItems] = useState([])
+    const [items, setItems] = useState([]);
     const [subtotal, setSubTotal] = useState(0);
     const [itemsQty, setItemsQty] = useState(0);
-
+    const maxItems = 999;
 
     const calculatePrice = (price, qty) => {
         return price * qty;
@@ -15,7 +15,7 @@ export const CartComponentContext = props => {
 
     const addItems = order => {
         setSubTotal(subtotal + calculatePrice(order.item.price, order.quantity));
-        setItemsQty(itemsQty + order.quantity)
+        setItemsQty(itemsQty + order.quantity);
         if (items.find(item => item.item.id === order.item.id)) {
             const updateItem = items.map((item) => {
                 const totalQty = item.quantity + order.quantity;
@@ -30,7 +30,6 @@ export const CartComponentContext = props => {
         }
     }
 
-
     const removeItems = id => {
         const itemToRemove = items.find(item => item.item.id === id);
         setSubTotal(subtotal - calculatePrice(itemToRemove.item.price, itemToRemove.quantity));
@@ -44,7 +43,7 @@ export const CartComponentContext = props => {
         setItemsQty(0);
     }
 
-    return <CartContext.Provider value={{ addItems, removeItems, subtotal, clear, items, itemsQty }}>
+    return <CartContext.Provider value={{ addItems, removeItems, subtotal, clear, items, itemsQty, maxItems }}>
         {props.children}
     </CartContext.Provider>
 

@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import 'poppins-font';
 import { makeStyles } from '@material-ui/core';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import { CartContext } from "../../context/CartContext";
 import { cartStyle } from './CartStyle';
 import { CartTable } from './components/CatTable/CartTable';
@@ -10,6 +9,7 @@ import { CartMessage } from './components/CartMessage/CartMessage';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { dataBase } from '../../Firebase/firebase';
+import { Redirect } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => cartStyle(theme));
@@ -18,11 +18,10 @@ export const Cart = () => {
     const classes = useStyles();
     const { items, subtotal, clear } = useContext(CartContext);
     const [idOrder, setIdOrder] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [buyerName, setBuyerName] = useState('');
+    const [error, setError] = useState(false);
 
-    const createOrder = (buyer) => {
-        // console.log('create order')
-        // console.log('buyer', buyer)
+    const createOrder = async (buyer) => {
         const orders = dataBase.collection("orders");
         const newOrder = {
             buyer,
@@ -30,56 +29,43 @@ export const Cart = () => {
             date: firebase.firestore.Timestamp.fromDate(new Date()),
             total: subtotal
         }
-        orders.add(newOrder).then(({ id }) => {
+        try {
+            const { id } = await orders.add(newOrder);
             setIdOrder(id);
-        }).catch(err => {
-            console.log(err)
-        }).finally(() => {
-            setLoading(false)
-        })
+            setBuyerName(buyer.name + ' ' + buyer.lastname)
+        } catch (err) {
+            setError(true);
+        }
 
-        const updateItem = dataBase.collection('cervezas').where(firebase.firestore.FieldPath.documentId(), 'in', items.map((item) => item.item.id))
+        const updateItem = dataBase.collection('cervezas').where(firebase.firestore.FieldPath.documentId(), 'in', items.map((item) => item.item.id));
+        const databaseQuery = await updateItem.get();
+        const batch = dataBase.batch();
+        const outOfStock = [];
 
-        updateItem.get().then(querySnapshot => {
-            const batch = dataBase.batch();
-            const outOfStock = [];
-
-            querySnapshot.docs.forEach((docSnapshot, idx) => {
-                if (docSnapshot.data().stock >= items[idx].quantity) {
-                    batch.update(docSnapshot.ref, { stock: docSnapshot.data().stock - items[idx].quantity });
-                    clear();
-                    // setLoading(false)
-                    // console.log(loading)
-
-                } else {
-                    outOfStock.push({ ...docSnapshot.data(), id: docSnapshot.id });
-                }
-            })
-            if (outOfStock.length === 0) {
-                batch.commit().then(() => { })
-
+        databaseQuery.docs.forEach((docSnapshot, idx) => {
+            if (docSnapshot.data().stock >= items[idx].quantity) {
+                batch.update(docSnapshot.ref, { stock: docSnapshot.data().stock - items[idx].quantity });
             } else {
-                // console.log('no tenes stock')
+                outOfStock.push({ ...docSnapshot.data(), id: docSnapshot.id });
             }
         })
+        if (outOfStock.length === 0) {
+            await batch.commit()
+        } else {
+            setError(true);
+        }
+        clear();
     }
 
-    return <section className={classes.container}>
-        {items.length === 0 ? (<CartMessage idOrder ={idOrder} />) : (
-            <>
-                <CartTable items={items} />
-                <CartTotal items={items} subtotal={subtotal} createOrder={createOrder} />
-            </>
-        )}
-    </section>
 
-    // return <section className={classes.container}>
-    //     {/* {items.length === 0 && loading ? (<CartMessage text={`Tu carrito esta vacío`} />) : (
-    //         idOrder.length === 0 ?
-    //             (<>
-    //                 <CartTable items={items} />
-    //                 <CartTotal items={items} subtotal={subtotal} createOrder={createOrder} />
-    //             </>) : (loading ? <CircularProgress size='6rem' color='inherit' /> : <CartMessage text={`Se genero la orden de compra ${idOrder}`} />)
-    //     )}
-    // </section> */}
+    return <section className={classes.container}>
+        {idOrder.length > 0 ? (<CartMessage text={`${buyerName} se genero la orden de compra ${idOrder}. Gracias!`} />) :
+            (items.length === 0 && idOrder.length === 0 ? (<CartMessage text={`Su carrito no tiene productos`} />) : (
+                <>
+                    <CartTable items={items} />
+                    <CartTotal items={items} subtotal={subtotal} createOrder={createOrder} />
+                </>
+            ))}
+        {error ? <Redirect to={'*'} /> : ''}
+    </section>
 }

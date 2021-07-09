@@ -36,7 +36,6 @@ export const Form = ({ closeDialog,  createOrder }) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        // setBuyer(userInfo)
         createOrder(userInfo);
         closeDialog(false)
 
@@ -46,10 +45,6 @@ export const Form = ({ closeDialog,  createOrder }) => {
         e.preventDefault();
         closeDialog(false)
     }
-
-    // useEffect(()=>{
-    //     console.log(userInfo)
-    // },[userInfo])
 
     return <div className={classes.container}>
         <form autoComplete='off' noValidate>

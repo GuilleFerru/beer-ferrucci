@@ -5,14 +5,12 @@ import { NavBar } from './components/NavBar/NavBar';
 import { Router } from './Router/Router';
 
 const App = props => {
-  return <>
-  <CartComponentContext>
+  return <CartComponentContext>
     <BrowserRouter>
       <NavBar />
       <Router />
     </BrowserRouter>
     </CartComponentContext>
-  </>
 }
 
 export default App;

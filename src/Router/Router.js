@@ -25,7 +25,7 @@ export const Router = () => {
         <Route exact path="/dialogo">
             <DialogContainer />
         </Route>
-        <Route path="/*">
+        <Route path="*">
             <NotFoundComponent />
         </Route>
 
