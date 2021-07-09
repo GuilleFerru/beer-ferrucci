@@ -2,6 +2,7 @@
 export const cartStyle = theme => {
     return ({
         container: {
+            
             background: 'black',
             display: 'flex',
             flexFlow: 'row wrap',

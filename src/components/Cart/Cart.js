@@ -57,7 +57,6 @@ export const Cart = () => {
         clear();
     }
 
-
     return <section className={classes.container}>
         {idOrder.length > 0 ? (<CartMessage text={`${buyerName} se genero la orden de compra ${idOrder}. Gracias!`} />) :
             (items.length === 0 && idOrder.length === 0 ? (<CartMessage text={`Su carrito no tiene productos`} />) : (

@@ -1,11 +1,8 @@
-import {button} from '../../../../styles/ButtonStyle'
 export const itemDetailStyle = theme => {
     return ({
         item: {
-            // border: '1px solid blue',
             display: 'flex',
             flexFlow: 'row wrap',
-            // flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
             columnGap: '1.5rem',
@@ -21,7 +18,7 @@ export const itemDetailStyle = theme => {
 
             },
             '& img': {
-                // border: '1px solid blue',
+                cursor:'pointer',
                 maxWidth: '100%',
                 height: 'auto',
                 transition: '1.2s ease-in-out',
@@ -41,7 +38,6 @@ export const itemDetailStyle = theme => {
                 margin: '0rem'
             },
             '& span': {
-                // border: '1px solid black',
                 maxWidth: '25rem',
                 color: '#666',
                 fontWeight: '300',
