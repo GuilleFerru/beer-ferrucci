@@ -3,7 +3,7 @@ export const navBarStyle = theme => {
         container: {
             fontFamily: 'poppins',
             padding: '0.5rem 0.8rem 0',
-            backgroundColor: 'white'
+            backgroundColor: 'white',
         },
         innerWrap: {
             display: 'flex',

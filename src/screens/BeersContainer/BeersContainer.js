@@ -4,7 +4,7 @@ import { dataBase } from '../../Firebase/firebase';
 import { makeStyles } from '@material-ui/core';
 import { beersContainerStyle } from './BeersContainerStyle';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { BeersList } from './BeersList/BeersList';
+import { BeersList } from './components/BeersList/BeersList';
 
 const useStyles = makeStyles((theme) => beersContainerStyle(theme));
 
@@ -32,7 +32,7 @@ export const BeersContainer = () => {
         })
     }, [])
 
-
+    const filterByCategory = listOfCervezas => { return listOfCervezas.filter(cerveza => cerveza.category === 'beerBottle')  }
 
     return <>
         {loading ? (
@@ -41,7 +41,7 @@ export const BeersContainer = () => {
             </div>
         ) : (
             <section className={classes.section} >
-                <BeersList cervezas={cervezas} />
+                <BeersList cervezas={filterByCategory(cervezas)}/>
             </section>
         )}
     </>

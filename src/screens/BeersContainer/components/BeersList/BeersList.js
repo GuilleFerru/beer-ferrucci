@@ -1,6 +1,7 @@
 import React from 'react';
 import { Beer } from '../Beer/Beer';
 
+
 export const BeersList = (props) => {
     const { cervezas } = props;
     return <>
