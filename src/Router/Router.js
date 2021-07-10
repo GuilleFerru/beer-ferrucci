@@ -2,10 +2,9 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { ItemListContainer } from '../screens/ItemListContainer/ItemListContainer';
 import { ItemDetailContainer } from '../screens/ItemDetailContainer/ItemDetailContainer';
-
 import { Cart } from '../components/Cart/Cart';
 import { NotFoundComponent } from '../components/NotFoundComponent/NotFoundComponent';
-import { DialogContainer } from '../components/commonComponents/Dialog/DialogContainer';
+import { BeersContainer } from '../screens/BeersContainer/BeersContainer';
 
 
 export const Router = () => {
@@ -22,8 +21,8 @@ export const Router = () => {
         <Route path="/cart">
             <Cart />
         </Route>
-        <Route exact path="/dialogo">
-            <DialogContainer />
+        <Route exact path="/beers">
+            <BeersContainer />
         </Route>
         <Route path="*">
             <NotFoundComponent />

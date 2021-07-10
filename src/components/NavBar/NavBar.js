@@ -43,7 +43,7 @@ export const NavBar = () => {
                 <ul className={classes.listaCabeceraDesktop}>
                     <li><Link to={`/category/${beerBottle}`}>Gü-MARKET</Link></li>
                     <li><Link to={`/category/${sixPack}`}>Gü-PACKS</Link></li>
-                    <li>NUESTRAS CERVEZAS</li>
+                    <li><Link to={`/beers`}>NUESTRAS CERVEZAS</Link></li>
                     <li>CONTACTANOS</li>
                 </ul>
             </div>
