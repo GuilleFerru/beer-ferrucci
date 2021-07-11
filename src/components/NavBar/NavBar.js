@@ -1,15 +1,71 @@
-import React, { useContext } from 'react'; // siempre tiene que estar
+import React, { useState, useContext } from 'react'; // siempre tiene que estar
 import { CartContext } from '../../context/CartContext';
 import { Link } from 'react-router-dom';
 import 'poppins-font';
 import logo from '../../img/main_logo.png';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, AppBar, Toolbar, Menu, IconButton } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import { navBarStyle } from './NavBarStyle';
 import { CartWidget } from '../CartWidget/CartWidget';
 
 
 const useStyles = makeStyles((theme) => navBarStyle(theme));
+const beerBottle = 'beerBottle';
+const sixPack = 'sixPack';
+
+const ListContainerForMobile = () => {
+    const classes = useStyles();
+    const [anchorEl, setAnchorEl] = useState(null);
+    const mobileMenuOpen = Boolean(anchorEl);
+    const menuId = 'navigation-for-mobile';
+
+    const handleMobileMenuClose = () => {
+        setAnchorEl(null)
+    }
+
+    const handleMobileMenuOpen = (event) => {
+        setAnchorEl(event.currentTarget)
+    }
+
+    const menuMobile = (
+        <Menu
+            anchorEl={anchorEl}
+            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            id={menuId}
+            keepMounted
+            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            open={mobileMenuOpen}
+            onClose={handleMobileMenuClose}
+        >
+            <div className={classes.listaContainerMobile}>
+                <ListContainerNavbar />
+            </div>
+        </Menu>
+    )
+
+    return <div className={classes.listaContainerMobile}>
+        <IconButton
+            aria-label="show more"
+            aria-controls={menuId}
+            aria-haspopup="true"
+            onClick={handleMobileMenuOpen}
+            color="inherit"
+        >
+            <MenuIcon fontSize="large" />
+        </IconButton>
+        {menuMobile}
+    </div>
+}
+
+const ListContainerNavbar = () => {
+    const classes = useStyles();
+    return <ul className={classes.navbarList}>
+        <li><Link to={`/category/${beerBottle}`}>Gü-MARKET</Link></li>
+        <li><Link to={`/category/${sixPack}`}>Gü-PACKS</Link></li>
+        <li><Link to={`/beers`}>NUESTRAS CERVEZAS</Link></li>
+        <li>CONTACTANOS</li>
+    </ul>
+}
 
 const LogoNavbar = () => {
     return <Link aria-current="page" to={'/'}>
@@ -19,35 +75,27 @@ const LogoNavbar = () => {
 
 export const NavBar = () => {
     const classes = useStyles();
-    const beerBottle = 'beerBottle';
-    const sixPack = 'sixPack';
-    const { items} = useContext(CartContext);
+    const { items } = useContext(CartContext);
 
-    return <header className={classes.container}>
-        <nav className={classes.innerWrap}>
-            <div className={classes.logoCabeceraDesktop}>
-                <LogoNavbar />
-            </div>
+    return <div>
+        <AppBar position="static" className={classes.appBar}>
+            <Toolbar className={classes.innerWrap}>
+                <div className={classes.logoContainerDesktop}>
+                    <LogoNavbar />
+                </div>
+                <div className={classes.listaContainerMobile}>
+                    <ListContainerForMobile />
+                </div>
+                <div className={classes.logoContainerMobile}>
+                    <LogoNavbar />
+                </div>
+                <div className={classes.listaContainerDesktop}>
+                    <ListContainerNavbar />
+                </div>
+                {items.length === 0 ? <div></div> : <CartWidget />}
+            </Toolbar>
+        </AppBar>
 
-            <div className={classes.listaContainerMobile}>
-                <button className={classes.mobileMenu}>
-                    <MenuIcon fontSize="large" />
-                </button>
-            </div>
+    </div>
 
-            <div className={classes.logoCabeceraMobile}>
-                <LogoNavbar />
-            </div>
-
-            <div className={classes.listaContainerDesktop}>
-                <ul className={classes.listaCabeceraDesktop}>
-                    <li><Link to={`/category/${beerBottle}`}>Gü-MARKET</Link></li>
-                    <li><Link to={`/category/${sixPack}`}>Gü-PACKS</Link></li>
-                    <li><Link to={`/beers`}>NUESTRAS CERVEZAS</Link></li>
-                    <li>CONTACTANOS</li>
-                </ul>
-            </div>
-            {items.length === 0 ? <div></div> : <CartWidget />}
-        </nav>
-    </header>
 }

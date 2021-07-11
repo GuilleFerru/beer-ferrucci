@@ -1,16 +1,19 @@
 export const navBarStyle = theme => {
     return ({
-        container: {
+        root: {
+            flexGrow: 1,
+        },
+        appBar: {
+            backgroundColor: 'white',
             fontFamily: 'poppins',
             padding: '0.5rem 0.8rem 0',
-            backgroundColor: 'white',
         },
         innerWrap: {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center'
         },
-        logoCabeceraDesktop: {
+        logoContainerDesktop: {
             '@media (max-width: 800px)': {
                 display: 'none'
             }
@@ -20,7 +23,8 @@ export const navBarStyle = theme => {
                 display: 'none'
             }
         },
-        listaCabeceraDesktop: {
+
+        navbarList: {
             margin: '0.5rem 0',
             padding: '0',
             listStyle: 'none',
@@ -36,9 +40,12 @@ export const navBarStyle = theme => {
                     color: 'inherit'
                 }
             
+            },
+            '@media (max-width: 800px)': {
+                flexFlow: 'column nowrap'
             }
         },
-        logoCabeceraMobile: {
+        logoContainerMobile: {
             display: 'none',
             '@media (max-width: 800px)': {
                 display: 'flex'
