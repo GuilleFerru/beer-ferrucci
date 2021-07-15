@@ -1,7 +1,6 @@
 export const formStyle = theme => {
     return ({
         container: {
-            '& form': {
                 display: 'flex',
                 flexFlow: 'column nowrap',
                 rowGap: '1em',
@@ -13,11 +12,6 @@ export const formStyle = theme => {
                     alignItems: 'center',
                     columnGap: '0.5em'
                 }
-            }
-        },
-        textField: {
-            marginRight: theme.spacing(2),
-            // width: '15ch',
-        },
+        }
     })
 }

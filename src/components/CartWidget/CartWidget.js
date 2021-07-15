@@ -12,19 +12,19 @@ const useStyles = makeStyles((theme) => cartWidgetStyle(theme));
 export const CartWidget = () => {
     const classes = useStyles();
     const { itemsQty, subtotal } = useContext(CartContext);
-    
+
     return <div className={classes.logoCarrito}>
         <Link to={`/cart`}>
             <div className={classes.carritoNombre}>
                 <MyBadge qty={itemsQty} />
-                    <p className={classes.parrafoCarrito}>Carrito</p>
+                <p className={classes.parrafoCarrito}>Carrito</p>
             </div>
         </Link>
-            <span className={classes.carritoPrecio}>
-                <bdi>
-                    <span>$</span>{subtotal}
-                </bdi>
-            </span>
+        <span className={classes.carritoPrecio}>
+            <bdi>
+                <span>$</span>{subtotal}
+            </bdi>
+        </span>
     </div>
 
 

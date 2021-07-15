@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core';
 import { ButtonGroup } from '../../../commonComponents/ButtonGroup/ButtonGroup';
 import { cartTotalStyle } from './CartTotalStyle';
 import { CartContext } from "../../../../context/CartContext";
-import { Form } from '../../../Form/Form';
+import { UserForm } from '../../../Form/UserForm';
 import { DialogComponent } from '../../../commonComponents/Dialog/DialogComponent';
 
 
@@ -42,7 +42,7 @@ export const CartTotal = ({ subtotal, createOrder }) => {
                 openDialog={setOpenDialog}
                 title='Detalles de Facturación'
             >
-                <Form closeDialog={closeDialog} createOrder={createOrder} />
+                <UserForm closeDialog={closeDialog} createOrder={createOrder} />
             </DialogComponent>
             <ButtonGroup style={{ margin: 'auto' }} handleConfirm={e => setOpenDialog(true)}
                 handleClose={clear}
