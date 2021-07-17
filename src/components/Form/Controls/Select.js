@@ -5,20 +5,20 @@ import { makeStyles, FormControl, InputLabel, Select as MuiSelect, MenuItem } fr
 const useStyles = makeStyles(theme => ({
     textField: {
         marginRight: theme.spacing(2),
-        // width: '15ch',
     }
 }))
 
 export const Select = (props) => {
     const classes = useStyles();
-    const { name, label, value, onChange, options } = props;
+    const { name, label, value, onChange, options, disabled} = props;
 
-    return <FormControl className={classes.textField}>
+    return <FormControl className={classes.textField} disabled={disabled}>
         <InputLabel>{label}</InputLabel>
         <MuiSelect
             name={name}
             value={value}
-            onChange={onChange}>
+            onChange={onChange}
+            >
             {
                 options.map((option, i) => (
                     <MenuItem key={i} value={option.value}>
@@ -26,9 +26,8 @@ export const Select = (props) => {
                     </MenuItem>
                 ))
             }
+            
         </MuiSelect>
-
-
     </FormControl>
 
 }

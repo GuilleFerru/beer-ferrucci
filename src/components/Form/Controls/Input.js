@@ -12,17 +12,17 @@ const useStyles = makeStyles(theme => ({
 
 export const Input = (props) => {
     const classes = useStyles();
-    const { name, label, value, onChange, autoFocus, helperText,fullWidth, required} = props
-    
+    const { name, label, value, onChange, autoFocus, error = null, fullWidth, required } = props
+
     return <TextField className={classes.textField}
         autoFocus={autoFocus || false}
         fullWidth={fullWidth || false}
-        required ={required || true}
+        required={required || false}
         label={label}
         value={value}
         name={name}
         onChange={onChange}
-        helperText={helperText || ''}
+        {...(error && { error: true, helperText: error })}
     >
     </TextField>
 

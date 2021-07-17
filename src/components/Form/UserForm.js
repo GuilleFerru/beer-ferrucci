@@ -7,28 +7,52 @@ import { UseForm, Form } from './Form';
 import { Input } from './Controls/Input';
 import { Select } from './Controls/Select';
 
-
-
-
 const initialFValues = {
     name: '',
     lastname: '',
     country: 'AR',
-    province: 'CB',
+    province: 'undefined',
     address: '',
     telephone: '',
     email: ''
 }
 
 export const UserForm = ({ closeDialog, createOrder }) => {
-    
 
-    const { values, handleChange} = UseForm(initialFValues);
+    const validate = (fieldValues = values) => {
+        let temp = {...errors}
+        if ('name' in fieldValues) {
+            temp.name = fieldValues.name ? "" : "Por favor ingrese su nombre"
+        }
+        if ('lastname' in fieldValues) {
+            temp.lastname = fieldValues.lastname ? "" : "Por favor ingrese su apellido"
+        }
+        if ('address' in fieldValues) {
+            temp.address = fieldValues.address ? "" : "Por favor ingrese su dirección"
+        }
+        if ('telephone' in fieldValues) {
+            temp.telephone = fieldValues.telephone ? "" : "Por favor ingrese su número telefonico"
+        }
+        if ('email' in fieldValues) {
+            temp.email = (/$^|.+@.+..+/).test(fieldValues.email) ? "" : "Por favor ingrese su email"
+        }
+        setErrors({ ...temp })
+
+        if(fieldValues === values){
+            return Object.values(temp).every(error => error === "")
+        }
+        
+    }
+
+    const { values, errors, setErrors, handleChange, handleProvince } = UseForm(initialFValues, true, validate);
 
     const handleSubmit = e => {
         e.preventDefault();
-        createOrder(values);
-        closeDialog(false)
+        if (validate()) {
+            createOrder(values);
+            closeDialog(false)
+        }
+
     }
 
     const handleCancel = e => {
@@ -40,57 +64,66 @@ export const UserForm = ({ closeDialog, createOrder }) => {
         <div>
             <Input
                 autoFocus={true}
+                required={true}
                 label="Nombre"
                 value={values.name}
                 name="name"
                 onChange={handleChange}
-                helperText="Ingrese su nombre completo"
+                error={errors.name}
             />
 
             <Input
                 autoFocus={false}
+                required={true}
                 label="Apellido"
                 value={values.lastname}
                 name="lastname"
                 onChange={handleChange}
-                helperText="Ingrese su apellido"
+                error={errors.lastname}
             />
         </div>
         <div>
             <Select
                 label="Pais"
+                required={true}
                 value={values.country}
                 name="country"
-                onChange={handleChange}
+                onChange={handleProvince}
                 options={countries}
             />
 
             <Select
                 label="Provincia"
-                value={values.province}
+                required={true}
+                value= {values.province} 
                 name="province"
                 onChange={handleChange}
                 options={provinces}
+                disabled={values.country !== 'AR' ? true : false}
+                
             />
 
             <Input
                 autoFocus={false}
+                required={true}
                 label="Direccion"
                 value={values.address}
                 name="address"
                 onChange={handleChange}
-                helperText="Ingrese la direccion de envio"
+
+                error={errors.address}
             />
         </div>
         <div>
             <Input
                 autoFocus={false}
+                required={true}
                 fullWidth={true}
                 label="Telefono"
                 value={values.telephone}
                 name="telephone"
                 onChange={handleChange}
-                helperText="Ingrese su número"
+                error={errors.telephone}
             />
             <Input
                 autoFocus={false}
@@ -99,7 +132,7 @@ export const UserForm = ({ closeDialog, createOrder }) => {
                 value={values.email}
                 name="email"
                 onChange={handleChange}
-                helperText="Ingrese su email"
+                error={errors.email}
             />
         </div>
         <ButtonGroup
@@ -107,7 +140,6 @@ export const UserForm = ({ closeDialog, createOrder }) => {
             handleClose={handleCancel}
             firstButton='Aceptar'
             secondButton='Cerrar'
-        // disabled={values.name === '' || values.lastname === '' || values.address === '' || values.telephone === '' || values.email === ''}
         />
     </Form>
 }

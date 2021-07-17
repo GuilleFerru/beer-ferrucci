@@ -2,6 +2,7 @@ export const beerStyle = theme => {
     return ({
         container: {
             padding:'2rem',
+
             '& a': {
                 display: 'flex',
                 flexFlow: 'row wrap',
@@ -9,6 +10,10 @@ export const beerStyle = theme => {
                 alignItems: 'center',
                 columnGap: '2rem',
                 cursor: 'pointer',
+                '& img':{
+                    maxWidth: '100%',
+                    height: 'auto',
+                }
             },      
             '& a, a:hover, a:focus, a:active  ': {
                 textDecoration: 'none !important',

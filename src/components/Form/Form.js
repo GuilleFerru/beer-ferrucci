@@ -4,9 +4,21 @@ import { formStyle } from './FormStyle';
 
 const useStyles = makeStyles((theme) => formStyle(theme));
 
-export const UseForm = (initialFValues) => {
+export const UseForm = (initialFValues, validateOnChange = false, validate) => {
 
     const [values, setValues] = useState(initialFValues);
+    const [errors, setErrors] = useState({});
+
+    const handleProvince = e => {
+        const { name, value } = e.target;
+        if (value !== 'AR') {
+            setValues({
+                ...values,
+                [name]:value,
+                'province': 'undefined'
+            })
+        }
+    }
 
     const handleChange = e => {
         const { name, value } = e.target;
@@ -14,6 +26,9 @@ export const UseForm = (initialFValues) => {
             ...values,
             [name]: value
         })
+        if (validateOnChange) {
+            validate({ [name]: value })
+        }
     }
 
 
@@ -21,12 +36,16 @@ export const UseForm = (initialFValues) => {
     return {
         values,
         setValues,
-        handleChange
+        errors,
+        setErrors,
+        handleChange,
+        handleProvince
     }
 }
 
 export const Form = (props) => {
     const classes = useStyles();
+
 
     return <form className={classes.container} autoComplete="off">
         {props.children}

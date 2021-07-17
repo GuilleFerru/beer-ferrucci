@@ -7,6 +7,7 @@ export const navBarStyle = theme => {
             backgroundColor: 'white',
             fontFamily: 'poppins',
             padding: '0.5rem 0.8rem 0',
+            boxShadow: '-2px 2px 7px 0px rgba(0,0,0,0.75)',
         },
         innerWrap: {
             display: 'flex',
