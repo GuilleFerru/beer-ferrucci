@@ -9,13 +9,18 @@ export const UseForm = (initialFValues, validateOnChange = false, validate) => {
     const [values, setValues] = useState(initialFValues);
     const [errors, setErrors] = useState({});
 
-    const handleProvince = e => {
+    const handleCountry = e => {
         const { name, value } = e.target;
         if (value !== 'AR') {
             setValues({
                 ...values,
                 [name]:value,
                 'province': 'undefined'
+            })
+        } else {
+            setValues({
+                ...values,
+                [name]:value,
             })
         }
     }
@@ -31,22 +36,18 @@ export const UseForm = (initialFValues, validateOnChange = false, validate) => {
         }
     }
 
-
-
     return {
         values,
         setValues,
         errors,
         setErrors,
         handleChange,
-        handleProvince
+        handleCountry
     }
 }
 
 export const Form = (props) => {
     const classes = useStyles();
-
-
     return <form className={classes.container} autoComplete="off">
         {props.children}
     </form>

@@ -17,7 +17,11 @@ export const navBarStyle = theme => {
         logoContainerDesktop: {
             '@media (max-width: 800px)': {
                 display: 'none'
-            }
+            },
+            '& img:hover':{
+                transform: 'scale(1.1)',
+                transition: '0.3s'
+            },
         },
         listaContainerDesktop: {
             '@media (max-width: 800px)': {
@@ -32,6 +36,7 @@ export const navBarStyle = theme => {
             display: 'flex',
             justifyContent: 'space-evenly',
             fontWeight: '500',
+            fontSize:'1.2rem',
             '& li': {
                 padding: '0.5rem',
                 color: 'black',

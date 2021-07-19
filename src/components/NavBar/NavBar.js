@@ -7,11 +7,13 @@ import { makeStyles, AppBar, Toolbar, Menu, IconButton } from '@material-ui/core
 import MenuIcon from '@material-ui/icons/Menu';
 import { navBarStyle } from './NavBarStyle';
 import { CartWidget } from '../CartWidget/CartWidget';
+import { categories } from '../../Services/callByCategory';
 
 
 const useStyles = makeStyles((theme) => navBarStyle(theme));
-const beerBottle = 'beerBottle';
-const sixPack = 'sixPack';
+const firstCategory = categories[0].value;
+const secondCategory = categories[1].value;
+
 
 const ListContainerForMobile = () => {
     const classes = useStyles();
@@ -60,10 +62,9 @@ const ListContainerForMobile = () => {
 const ListContainerNavbar = () => {
     const classes = useStyles();
     return <ul className={classes.navbarList}>
-        <li><Link to={`/category/${beerBottle}`}>Gü-MARKET</Link></li>
-        <li><Link to={`/category/${sixPack}`}>Gü-PACKS</Link></li>
+        <li><Link to={`/category/${firstCategory}`}>Gü-MARKET</Link></li>
+        <li><Link to={`/category/${secondCategory}`}>Gü-PACKS</Link></li>
         <li><Link to={`/beers`}>NUESTRAS CERVEZAS</Link></li>
-        <li>CONTACTANOS</li>
     </ul>
 }
 

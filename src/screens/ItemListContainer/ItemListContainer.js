@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { dataBase } from '../../Firebase/firebase';
-import { useParams } from 'react-router-dom';
+import { useParams,Redirect } from 'react-router-dom';
 import { itemListContainerStyle } from './ItemListContainerStyle';
 import { ItemList } from './components/ItemList/ItemList';
 import 'poppins-font';
 import { makeStyles } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
 
 const useStyles = makeStyles((theme) => itemListContainerStyle(theme));
 
@@ -15,6 +14,7 @@ export const ItemListContainer = () => {
     const { categoryId } = useParams();
     const [cervezas, setCervezas] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         let itemCollection;
@@ -25,13 +25,11 @@ export const ItemListContainer = () => {
         }
         itemCollection.get().then((querySnapshot) => {
             if (querySnapshot.size === 0) {
-                console.log('No results!')
-                return;
+                setError(true);
             }
             setCervezas(querySnapshot.docs.map(doc => { return { ...doc.data(), id: doc.id } }))
         }).catch((error) => {
-            console.log("Error getting document:", error);
-            return;
+            setError(true);
         }).finally(() => {
             setLoading(false)
 
@@ -48,5 +46,6 @@ export const ItemListContainer = () => {
                 <ItemList cervezas={cervezas} />
             </section>
         )}
+        {error ? <Redirect to={'*'} /> : ''}
     </>
 }

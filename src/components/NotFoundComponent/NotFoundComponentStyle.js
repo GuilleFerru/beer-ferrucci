@@ -1,3 +1,4 @@
+import { button } from '../../styles/ButtonStyle';
 export const notFoundComponentStyle = theme => {
     return ({
         container: {
@@ -5,47 +6,29 @@ export const notFoundComponentStyle = theme => {
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
+            rowGap:'1rem',
+            fontFamily:'Poppins',
             '& > div': {
                 position: 'relative',
                 width: '100%',
                 display: 'flex',
+                
                 justifyContent: 'center',
                 '& > h1': {
                     position: 'absolute',
-                    top: '10%',
-                    fontFamily: 'Indie Flower, cursive',
+                    top: '5%',
+                    fontFamily: 'monospace',
                     fontWeight: '700',
                     color: 'rgb(36, 43, 42)',
+                    fontSize: '3.2em',
                     '& + img': {
-                        width: 'clamp(32em,60vw,100em)',
-                        '@media (max-width: 700px) and (orientation: landscape)': {
-                            width: 'clamp(32em,60vw,100em)'
-                        }
+                        marginTop: '1rem',
+                        width: '100%',
+                        height: 'auto'
                     }
                 }
             },
-            '& button': {
-                alignSelf: 'center',
-                marginTop: '1em',
-                fontSize: '1.2em',
-                borderRadius: '20px',
-                backgroundColor: 'black',
-                color: 'white',
-                padding: '0.5em 1em',
-                border: 'none',
-                fontFamily: 'monospace',
-                fontWeight: 'bold',
-                cursor: 'pointer',
-                transition: '0.9s ease',
-                '& > span': {
-                    textTransform: 'capitalize',
-                },
-                '&:hover': {
-                    opacity: '0.9',
-                    backgroundColor: 'white',
-                    color: 'black'
-                }
-            }
+            ...button
         }
     })
 

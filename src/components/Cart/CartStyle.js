@@ -2,7 +2,6 @@
 export const cartStyle = theme => {
     return ({
         container: {
-            
             background: 'black',
             display: 'flex',
             flexFlow: 'row wrap',
@@ -10,6 +9,7 @@ export const cartStyle = theme => {
             columnGap:'3rem',
             alignItems: 'flex-start',
             padding: '2rem',
+            marginBottom:'2rem',
             '& div:nth-child(1)':{
                 overflowX:'auto'
             }

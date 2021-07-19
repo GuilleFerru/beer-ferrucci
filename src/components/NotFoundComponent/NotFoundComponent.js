@@ -1,15 +1,17 @@
 import React from 'react';
 import { makeStyles, Button } from '@material-ui/core';
 import { notFoundComponentStyle } from './NotFoundComponentStyle';
+import img from '../../img/notFoundImage.jpg'
+import {useHistory} from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => notFoundComponentStyle(theme));
 
-export const NotFoundComponent = ({ titulo, img, alt, etiquetaBoton = 'Volver al inicio', action }) => {
+export const NotFoundComponent = ({ titulo = 'Pagina no encontrada', alt = 'Imagen de botellas de cerveza vacías', etiquetaBoton = 'Volver al inicio',}) => {
     const classes = useStyles();
+    const history = useHistory();
 
     const commonAction = () => {
-        action();
-        console.log('Hola!')
+        history.push(`/`)
     }
 
     return <section className={classes.container}>

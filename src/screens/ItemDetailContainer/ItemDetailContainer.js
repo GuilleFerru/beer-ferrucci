@@ -5,7 +5,7 @@ import { ItemDetail } from './components/ItemDetail/ItemDetail';
 import 'poppins-font';
 import { makeStyles } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => itemDetailContainerStyle(theme));
@@ -15,18 +15,19 @@ export const ItemDetailContainer = () => {
     const [item, setItem] = useState([]);
     const { id } = useParams();
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         const itemCollection = dataBase.collection("cervezas");
         const item = itemCollection.doc(id)
         item.get().then((doc) => {
             if (!doc.exists) {
-                return;
+                setError(true);
             }
             setItem([{ id: doc.id, ...doc.data() }])
         }).catch((error) => {
             console.log("Error getting document:", error);
-            return;
+            setError(true);
         }).finally(() => {
             setLoading(false)
         });
@@ -45,5 +46,6 @@ export const ItemDetailContainer = () => {
                 </section>
             })
         )}
+        {error ? <Redirect to={'*'} /> : ''}
     </>
 }

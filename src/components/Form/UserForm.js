@@ -44,7 +44,7 @@ export const UserForm = ({ closeDialog, createOrder }) => {
         
     }
 
-    const { values, errors, setErrors, handleChange, handleProvince } = UseForm(initialFValues, true, validate);
+    const { values, errors, setErrors, handleChange, handleCountry } = UseForm(initialFValues, true, validate);
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -88,7 +88,7 @@ export const UserForm = ({ closeDialog, createOrder }) => {
                 required={true}
                 value={values.country}
                 name="country"
-                onChange={handleProvince}
+                onChange={handleCountry}
                 options={countries}
             />
 

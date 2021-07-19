@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core';
 import { beersContainerStyle } from './BeersContainerStyle';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { BeersList } from './components/BeersList/BeersList';
+import { Redirect } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => beersContainerStyle(theme));
 
@@ -12,6 +13,7 @@ export const BeersContainer = () => {
     const classes = useStyles();
     const [cervezas, setCervezas] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
 
 
@@ -21,12 +23,12 @@ export const BeersContainer = () => {
         itemCollection.get().then((querySnapshot) => {
             if (querySnapshot.size === 0) {
                 console.log('No results!')
-                return;
+                setError(true);
             }
             setCervezas(querySnapshot.docs.map(doc => { return { ...doc.data(), id: doc.id } }))
         }).catch((error) => {
             console.log("Error getting document:", error);
-            return;
+            setError(true);
         }).finally(() => {
             setLoading(false)
         })
@@ -44,5 +46,6 @@ export const BeersContainer = () => {
                 <BeersList cervezas={filterByCategory(cervezas)}/>
             </section>
         )}
+        {error ? <Redirect to={'*'} /> : ''}
     </>
 }
