@@ -6,11 +6,12 @@ import { cartTotalStyle } from './CartTotalStyle';
 import { CartContext } from "../../../../context/CartContext";
 import { UserForm } from '../../../Form/UserForm';
 import { DialogComponent } from '../../../commonComponents/Dialog/DialogComponent';
+import Divider from '@material-ui/core/Divider';
 
 
 const useStyles = makeStyles((theme) => cartTotalStyle(theme));
 
-export const CartTotal = ({ subtotal, createOrder }) => {
+export const CartTotal = ({ total, createOrder }) => {
     const classes = useStyles();
     const [openDialog, setOpenDialog] = useState(false);
     const { clear } = useContext(CartContext);
@@ -24,19 +25,14 @@ export const CartTotal = ({ subtotal, createOrder }) => {
             <div>
                 <h2>Total del carrito</h2>
             </div>
-            {/* <div>
-                <p>Subtotal</p>
-                <span><bdi>$</bdi>{subtotal}</span>
-            </div> */}
-            {/* <div>
-                <p>Envío</p>
-                <span><bdi>$</bdi>0</span>
-            </div> */}
+            <Divider/>
             <div>
                 <p>Total</p>
-                <span><bdi>$</bdi>{subtotal}</span>
+                <span><bdi>$</bdi>{total}</span>
             </div>
+            <Divider/>
         </div>
+        
         <div>
             <DialogComponent open={openDialog}
                 openDialog={setOpenDialog}

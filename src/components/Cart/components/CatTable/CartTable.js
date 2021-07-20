@@ -26,7 +26,6 @@ export const CartTable = ({ items }) => {
                 </thead>
                 <tbody>
                     {items.map((item, i) => {
-                        // setTotal(total + (item.quantity * item.item.price));
                         return <tr key={i}>
                             <td>  <img src={item.item.pictureTwoUrl} alt={item.item.description} /></td>
                             <td>{item.item.title}</td>

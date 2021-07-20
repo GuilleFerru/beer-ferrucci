@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => cartWidgetStyle(theme));
 
 export const CartWidget = () => {
     const classes = useStyles();
-    const { itemsQty, subtotal } = useContext(CartContext);
+    const { itemsQty, total } = useContext(CartContext);
 
     return <div className={classes.logoCarrito}>
         <Link to={`/cart`}>
@@ -22,7 +22,7 @@ export const CartWidget = () => {
         </Link>
         <span className={classes.carritoPrecio}>
             <bdi>
-                <span>$</span>{subtotal}
+                <span>$</span>{total}
             </bdi>
         </span>
     </div>

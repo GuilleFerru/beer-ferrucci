@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => cartStyle(theme));
 
 export const Cart = () => {
     const classes = useStyles();
-    const { items, subtotal, clear } = useContext(CartContext);
+    const { items, total, clear } = useContext(CartContext);
     const [idOrder, setIdOrder] = useState([]);
     const [buyerName, setBuyerName] = useState('');
     const [error, setError] = useState(false);
@@ -27,7 +27,7 @@ export const Cart = () => {
             buyer,
             items,
             date: firebase.firestore.Timestamp.fromDate(new Date()),
-            total: subtotal
+            total: total
         }
         try {
             const { id } = await orders.add(newOrder);
@@ -62,7 +62,7 @@ export const Cart = () => {
             (items.length === 0 && idOrder.length === 0 ? (<CartMessage text={`Su carrito no tiene productos`} />) : (
                 <>
                     <CartTable items={items} />
-                    <CartTotal items={items} subtotal={subtotal} createOrder={createOrder} />
+                    <CartTotal items={items} total={total} createOrder={createOrder} />
                 </>
             ))}
         {error ? <Redirect to={'*'} /> : ''}

@@ -16,10 +16,11 @@ export const cartTotalStyle = theme => {
                 flexFlow: 'column nowrap',
                 justifyContent: 'flex-start',
                 alignItems: 'flex-start',
+                marginBottom:'1rem',
                 '& h2':{
                     lineHeight:'1.1',
-                    margin: '0 0 1.4rem',
-                    fontWeight:'300',
+                    margin: '0 0 0.5rem',
+                    fontWeight:'500',
                     fontSize:'1.4rem'
                 },
                 '& > div':{
@@ -30,6 +31,12 @@ export const cartTotalStyle = theme => {
                     '& p':{
                         width: '12rem'
                     }
+                },
+                '& > div:nth-child(3)':{
+                    marginTop: '1rem'
+                },
+                '& hr': {
+                    width: '100%',
                 }
             },
     })
