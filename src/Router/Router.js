@@ -24,7 +24,7 @@ export const Router = () => {
         <Route exact path="/beers">
             <BeersContainer />
         </Route>
-        <Route path="*">
+        <Route path="/*">
             <NotFoundComponent />
         </Route>
 

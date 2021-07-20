@@ -15,7 +15,7 @@ export const UseForm = (initialFValues, validateOnChange = false, validate) => {
             setValues({
                 ...values,
                 [name]:value,
-                'province': 'undefined'
+                'province': 'other Country'
             })
         } else {
             setValues({

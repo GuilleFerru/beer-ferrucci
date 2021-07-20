@@ -5,7 +5,6 @@ export const formStyle = theme => {
                 flexFlow: 'column nowrap',
                 rowGap: '1em',
                 '& > div:nth-child(4)': {
-                    // border: '1px solid red',
                     display: 'flex',
                     flexFlow: 'row nowrap !important',
                     justifyContent: 'center',

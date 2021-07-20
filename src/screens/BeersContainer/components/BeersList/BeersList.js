@@ -7,7 +7,6 @@ export const BeersList = (props) => {
     return <>
         {cervezas.map((cerveza, i) => {
             return <Beer key={i} cerveza={cerveza} />
-
         })
         }
     </>

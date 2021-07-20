@@ -24,14 +24,14 @@ export const CartTotal = ({ subtotal, createOrder }) => {
             <div>
                 <h2>Total del carrito</h2>
             </div>
-            <div>
+            {/* <div>
                 <p>Subtotal</p>
                 <span><bdi>$</bdi>{subtotal}</span>
-            </div>
-            <div>
+            </div> */}
+            {/* <div>
                 <p>Envío</p>
                 <span><bdi>$</bdi>0</span>
-            </div>
+            </div> */}
             <div>
                 <p>Total</p>
                 <span><bdi>$</bdi>{subtotal}</span>

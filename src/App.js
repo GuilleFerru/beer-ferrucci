@@ -1,4 +1,3 @@
-// import './App.css';
 import { CartComponentContext } from './context/CartContext';
 import { BrowserRouter } from 'react-router-dom';
 import { NavBar } from './components/NavBar/NavBar';

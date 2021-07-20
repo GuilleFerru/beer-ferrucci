@@ -15,7 +15,6 @@ export const itemListContainerStyle = theme => {
             '@media(max-width:600px)':{
                 gridTemplateColumns:'repeat(1,1fr)'
             }
-            
         },
         ...preloaderStyle
     })

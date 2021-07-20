@@ -1,7 +1,11 @@
 export const provinces = [
     {
+        value: 'otherCountry',
+        label: '',
+    },
+    {
         value: 'undefined',
-        label: 'No definido',
+        label: 'Seleccionar',
     },
     {
         value: 'BA',

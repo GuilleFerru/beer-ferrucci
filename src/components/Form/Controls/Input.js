@@ -6,7 +6,6 @@ import { makeStyles } from '@material-ui/core';
 const useStyles = makeStyles(theme => ({
     textField: {
         marginRight: theme.spacing(2),
-        // width: '15ch',
     }
 }))
 

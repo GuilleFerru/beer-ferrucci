@@ -12,6 +12,7 @@ const initialFValues = {
     lastname: '',
     country: 'AR',
     province: 'undefined',
+    city: '',
     address: '',
     telephone: '',
     email: ''
@@ -20,12 +21,18 @@ const initialFValues = {
 export const UserForm = ({ closeDialog, createOrder }) => {
 
     const validate = (fieldValues = values) => {
-        let temp = {...errors}
+        let temp = { ...errors }
         if ('name' in fieldValues) {
             temp.name = fieldValues.name ? "" : "Por favor ingrese su nombre"
         }
         if ('lastname' in fieldValues) {
             temp.lastname = fieldValues.lastname ? "" : "Por favor ingrese su apellido"
+        }
+        if ('province' in fieldValues) {
+            temp.province = fieldValues.province !== 'undefined' ? "" : "Por favor ingrese su Provincia"
+        }
+        if ('city' in fieldValues) {
+            temp.city = fieldValues.city ? "" : "Por favor ingrese su Localidad"
         }
         if ('address' in fieldValues) {
             temp.address = fieldValues.address ? "" : "Por favor ingrese su dirección"
@@ -38,10 +45,10 @@ export const UserForm = ({ closeDialog, createOrder }) => {
         }
         setErrors({ ...temp })
 
-        if(fieldValues === values){
+        if (fieldValues === values) {
             return Object.values(temp).every(error => error === "")
         }
-        
+
     }
 
     const { values, errors, setErrors, handleChange, handleCountry } = UseForm(initialFValues, true, validate);
@@ -52,7 +59,6 @@ export const UserForm = ({ closeDialog, createOrder }) => {
             createOrder(values);
             closeDialog(false)
         }
-
     }
 
     const handleCancel = e => {
@@ -65,6 +71,7 @@ export const UserForm = ({ closeDialog, createOrder }) => {
             <Input
                 autoFocus={true}
                 required={true}
+                fullWidth={true}
                 label="Nombre"
                 value={values.name}
                 name="name"
@@ -75,6 +82,7 @@ export const UserForm = ({ closeDialog, createOrder }) => {
             <Input
                 autoFocus={false}
                 required={true}
+                fullWidth={true}
                 label="Apellido"
                 value={values.lastname}
                 name="lastname"
@@ -82,7 +90,7 @@ export const UserForm = ({ closeDialog, createOrder }) => {
                 error={errors.lastname}
             />
         </div>
-        <div>
+        <div style={{display: 'flex', justifyContent:'space-between'}}>
             <Select
                 label="Pais"
                 required={true}
@@ -91,30 +99,37 @@ export const UserForm = ({ closeDialog, createOrder }) => {
                 onChange={handleCountry}
                 options={countries}
             />
-
             <Select
                 label="Provincia"
                 required={true}
-                value= {values.province} 
+                value={values.province}
                 name="province"
                 onChange={handleChange}
-                options={provinces}
+                options={provinces.filter(province => province.value !== 'otherCountry')}
                 disabled={values.country !== 'AR' ? true : false}
-                
+                error={values.country !=='AR' ? false : errors.province}
             />
-
             <Input
                 autoFocus={false}
                 required={true}
+                label={values.country !== 'AR' ? 'Regíon/Ciudad' : 'Ciudad'}
+                value={values.city}
+                name="city"
+                onChange={handleChange}
+                error={errors.city}
+            />
+        </div>
+        <div>
+            <Input
+                autoFocus={false}
+                required={true}
+                fullWidth={true}
                 label="Direccion"
                 value={values.address}
                 name="address"
                 onChange={handleChange}
-
                 error={errors.address}
             />
-        </div>
-        <div>
             <Input
                 autoFocus={false}
                 required={true}

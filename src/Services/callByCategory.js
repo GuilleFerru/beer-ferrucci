@@ -4,6 +4,5 @@ export const categories = [
     },
     {
         value: 'sixPack'
-
     }
 ];

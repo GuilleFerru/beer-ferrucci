@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'; // siempre tiene que estar
+import React, { useState, useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
 import { Link } from 'react-router-dom';
 import 'poppins-font';
