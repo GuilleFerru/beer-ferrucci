@@ -13,6 +13,7 @@
 5. Formulario de finalizacion de compra donde se solicitaran los datos para realizar el envio correspondiente, el formulario cuenta con validación instantanea.
 6. Realizada la compra se mostrara el id de la orden que se usara para enviar el pedido correspondiente.
 7. Acceso a redes sociales de la empresa.
+8. Seccion **Nuestras Cervezas** donde se realiza un listado con imagenes y una descripción ampliada de los productos.
 #### Las colecciones creadas en firestore son de cervezas y orders.
 
 ## Librerias 
