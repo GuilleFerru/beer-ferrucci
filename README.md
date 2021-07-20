@@ -1,5 +1,7 @@
 
-## Tienda Online MicroCerveceria Guendolina - Proyecto Curso React CoderHouse. Autor Guillermo Ferrucci
+# Tienda Online MicroCerveceria Guendolina 
+
+###Proyecto Curso React CoderHouse
 
 ### Este proyecto de ecommerce es elaborado en React Js. conectado a Firebase / Firestore y tiene las siguientes funcionalidades:
 
