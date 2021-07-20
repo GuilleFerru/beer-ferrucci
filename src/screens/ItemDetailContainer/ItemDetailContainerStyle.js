@@ -5,7 +5,6 @@ export const itemDetailContainerStyle = theme => {
             display: 'flex',
             justifyContent: 'center',
             rowGap: '2rem'
-
         },
         ...preloaderStyle
     })

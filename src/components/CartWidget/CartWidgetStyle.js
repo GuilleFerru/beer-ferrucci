@@ -3,9 +3,12 @@ export const cartWidgetStyle = theme => {
         logoCarrito: {
             padding: '0.2rem',
             display: 'flex',
+            justifyContent:'center',
+            alignItems:'flex-start',
             ' & a':{
                 textDecoration: 'none'
-            }
+            },
+
         },
         carritoNombre: {
             display: 'flex',
@@ -22,7 +25,15 @@ export const cartWidgetStyle = theme => {
             fontSize: '0.75rem'
         },
         carritoPrecio: {
-            fontSize: '0.95rem'
+            paddingTop:'0.2rem',
+            fontSize: '1.05rem',
+            color: 'rgba(0, 0, 0, 0.36)',
+            fontWeight:'600',
+            transition: '1s',
+            '&:hover':{
+                color: 'black'
+            }
+            
         }
     })
 }

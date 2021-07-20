@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { dataBase } from '../../Firebase/firebase';
-import { useParams } from 'react-router-dom';
+import { useParams,Redirect } from 'react-router-dom';
 import { itemListContainerStyle } from './ItemListContainerStyle';
 import { ItemList } from './components/ItemList/ItemList';
 import 'poppins-font';
 import { makeStyles } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
 
 const useStyles = makeStyles((theme) => itemListContainerStyle(theme));
 
@@ -15,61 +14,38 @@ export const ItemListContainer = () => {
     const { categoryId } = useParams();
     const [cervezas, setCervezas] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [itemCollection, setItemCollection] = useState(dataBase.collection('cervezas'))
+    const [error, setError] = useState(false);
 
     useEffect(() => {
-
-        // let itemCollection;
+        let itemCollection;
         if (categoryId) {
-            // itemCollection = dataBase.collection("cervezas").where('category', '==', categoryId)
-            setItemCollection(dataBase.collection("cervezas").where('category', '==', categoryId))
+            itemCollection = dataBase.collection("cervezas").where('category', '==', categoryId)
         } else {
-            // itemCollection = dataBase.collection("cervezas");
-            setItemCollection(dataBase.collection("cervezas"))
+            itemCollection = dataBase.collection("cervezas");
         }
-
         itemCollection.get().then((querySnapshot) => {
             if (querySnapshot.size === 0) {
-                console.log('No results')
+                setError(true);
             }
             setCervezas(querySnapshot.docs.map(doc => { return { ...doc.data(), id: doc.id } }))
         }).catch((error) => {
-            console.log("Error getting document:", error);
+            setError(true);
         }).finally(() => {
             setLoading(false)
 
         })
     }, [categoryId])
 
-
-    // const filterByCategory = listOfCervezas => { return category === undefined ? listOfCervezas : listOfCervezas.filter(cerveza => cerveza.category === category) }
-
-    // const getBeerCategory = () => {
-    //     const itemCollection = dataBase.collection("cervezas");
-    //     const beerCategory = itemCollection.where('category', '==', category)
-    //     beerCategory.get().then((querySnapshot) => {
-    //         if (querySnapshot.size === 0) {
-    //             console.log('No results')
-    //         }
-    //         setCervezas(querySnapshot.docs.map(doc => { return { ...doc.data(), id: doc.id } }))
-    //     })
-    // }
-
-    // const filterByCategory = listOfCervezas => {
-    //     return category === undefined ?
-    //         listOfCervezas : getBeerCategory()
-    // }
-
     return <>
         {loading ? (
             <div className={classes.preloaderContainer}>
                 <CircularProgress size='6rem' color='inherit' />
             </div>
-
         ) : (
             <section className={classes.itemListContainer}>
                 <ItemList cervezas={cervezas} />
             </section>
         )}
+        {error ? <Redirect to={'*'} /> : ''}
     </>
 }

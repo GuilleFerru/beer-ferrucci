@@ -4,7 +4,8 @@ import { itemDetailStyle } from "./ItemDetailStyle";
 import { ItemCount } from '../ItemCount/ItemCount';
 import { useHistory } from "react-router-dom";
 import { CartContext } from "../../../../context/CartContext";
-// import { MyPopover } from "../../../../components/commonComponents/MyPopover/MyPopover"
+import { ButtonGroup } from "../../../../components/commonComponents/ButtonGroup/ButtonGroup";
+import { MyPopover } from "../../../../components/commonComponents/MyPopover/MyPopover"
 
 const useStyles = makeStyles((theme) => itemDetailStyle(theme));
 
@@ -12,40 +13,37 @@ export const ItemDetail = (props) => {
   const classes = useStyles();
   const history = useHistory();
   const { cerveza } = props;
-  const [qty, setQty] = useState(0);
+  const [maxQtyReached, setMaxQtyReached] = useState(false);
   const [click, setClick] = useState(false);
-  const { addItems, clear} = useContext(CartContext);
+  const { itemsQty, maxItems, addItems } = useContext(CartContext);
   const divRef = React.useRef();
 
-  const onAdd = value => {
-    setQty(value);
-    setClick(true);
-    addItems({ item: cerveza, quantity: value });
-    
+  const onAdd = qtyToBuy => {
+    const totalItems = itemsQty + qtyToBuy;
+    if (totalItems > maxItems) {
+      setMaxQtyReached(true);
+    } else {
+      setClick(true);
+      addItems({ item: cerveza, quantity: qtyToBuy });
+    }
   };
 
-  const cancelButton = () =>{
-    setClick(!click);
-    clear();
-  }
-
-
-  return <div className={classes.item} ref={divRef}>
+  return <div className={classes.item} >
     <img src={cerveza.pictureUrl} alt={cerveza.description} />
-    <div className={classes.itemText}>
+    <div className={classes.itemText} ref={divRef}>
       <h1>{cerveza.title}</h1>
       <span>{cerveza.narrative}</span>
       <bdi>
         <p>${cerveza.price}</p>
       </bdi>
       {click ? (
-        <div className={classes.buttonGroup}>
-          <button onClick={() => history.push(`/cart`)}>Finalizar Compra </button>
-          <button onClick={() => cancelButton()}> Cancelar Compra </button>
-        </div>
+        <ButtonGroup handleConfirm={() => history.push(`/cart`)} handleClose={() => history.push(`/`)} firstButton='Ir a Carrito' secondButton='Seguir Comprando' />
       ) : (
-        <ItemCount stock={cerveza.stock} initial={cerveza.initial} qty={qty} addToCart={onAdd} />
+        <ItemCount stock={cerveza.stock} initial={cerveza.initial} addToCart={onAdd} />
       )}
+      {maxQtyReached && <MyPopover divRef={divRef.current} texto={`Debe agregar menos de ${maxItems} items en el carrito`} />}
     </div>
   </div>
 };
+
+

@@ -7,7 +7,6 @@ export const ItemList = (props) => {
     return <>
             {cervezas.map((cerveza,i) => {
             return <Item key={i}  {...cerveza} />
-            
         })
     }
     </>

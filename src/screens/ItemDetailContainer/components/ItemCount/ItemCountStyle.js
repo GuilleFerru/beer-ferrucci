@@ -2,7 +2,6 @@ export const itemCountStyle = () => {
     return ({
         itemCountContainer:{
             fontFamily: 'poppins',
-            // border: '1px solid red',
             display:'flex',
             flexFlow: 'column nowrap',
             rowGap: '1rem',
@@ -26,7 +25,6 @@ export const itemCountStyle = () => {
                     backgroundColor: 'black',
                     color:'white'
                 }
-                
             }
         },
         cantidadInput:{

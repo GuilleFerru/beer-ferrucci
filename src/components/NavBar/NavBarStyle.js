@@ -1,32 +1,42 @@
 export const navBarStyle = theme => {
     return ({
-        container: {
+        root: {
+            flexGrow: 1,
+        },
+        appBar: {
+            backgroundColor: 'white',
             fontFamily: 'poppins',
             padding: '0.5rem 0.8rem 0',
-            backgroundColor: 'white'
+            boxShadow: '-2px 2px 7px 0px rgba(0,0,0,0.75)',
         },
         innerWrap: {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center'
         },
-        logoCabeceraDesktop: {
+        logoContainerDesktop: {
             '@media (max-width: 800px)': {
                 display: 'none'
-            }
+            },
+            '& img:hover':{
+                transform: 'scale(1.1)',
+                transition: '0.3s'
+            },
         },
         listaContainerDesktop: {
             '@media (max-width: 800px)': {
                 display: 'none'
             }
         },
-        listaCabeceraDesktop: {
+
+        navbarList: {
             margin: '0.5rem 0',
             padding: '0',
             listStyle: 'none',
             display: 'flex',
             justifyContent: 'space-evenly',
             fontWeight: '500',
+            fontSize:'1.2rem',
             '& li': {
                 padding: '0.5rem',
                 color: 'black',
@@ -36,9 +46,12 @@ export const navBarStyle = theme => {
                     color: 'inherit'
                 }
             
+            },
+            '@media (max-width: 800px)': {
+                flexFlow: 'column nowrap'
             }
         },
-        logoCabeceraMobile: {
+        logoContainerMobile: {
             display: 'none',
             '@media (max-width: 800px)': {
                 display: 'flex'
@@ -56,6 +69,4 @@ export const navBarStyle = theme => {
             }
         }
     })
-
-
 }

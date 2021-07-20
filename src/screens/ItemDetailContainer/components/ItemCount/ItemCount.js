@@ -9,12 +9,10 @@ import AddShoppingCartTwoToneIcon from '@material-ui/icons/AddShoppingCartTwoTon
 
 const useStyles = makeStyles((theme) => itemCountStyle(theme));
 
-export const ItemCount = ({ stock, initial, qty, addToCart }) => {
+export const ItemCount = ({ stock, initial, addToCart }) => {
     const classes = useStyles();
-    const [count, setCount] = useState(initial > qty ? initial : qty);
-
+    const [count, setCount] = useState(initial);
     const divRef = React.useRef();
-
 
     return <div className={classes.itemCountContainer}>
         <div className={classes.cantidadInput} >
