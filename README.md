@@ -17,7 +17,7 @@
 #### Las colecciones creadas en firestore son de cervezas y orders.
 
 ## Librerias 
-#### La librería extra que usé es Material UI : [https://material-ui.com/](https://material-ui.com/)
+#### La librería extra que usé es Material UI : [https://material-ui.com/beer-ferrucci](https://material-ui.com/beer-ferrucci)
 
 ## Instalación
 ```bash
@@ -26,7 +26,7 @@ npm i
 npm start
 ```
 
-**Ver online**: 
+**Ver online**: [https://guilleferru.github.io/](https://guilleferru.github.io/)
 
 ## Imagenes
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { ItemListContainer } from '../screens/ItemListContainer/ItemListContainer';
 import { ItemDetailContainer } from '../screens/ItemDetailContainer/ItemDetailContainer';
 import { Cart } from '../components/Cart/Cart';
@@ -9,6 +9,7 @@ import { BeersContainer } from '../screens/BeersContainer/BeersContainer';
 
 export const Router = () => {
     return <Switch>
+         <Redirect from="/beer-ferrucci" to="/" />
         <Route exact path="/">
             <ItemListContainer />
         </Route>
