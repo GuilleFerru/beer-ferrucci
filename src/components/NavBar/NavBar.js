@@ -65,6 +65,7 @@ const ListContainerNavbar = () => {
         <li><Link to={`/category/${firstCategory}`}>Gü-MARKET</Link></li>
         <li><Link to={`/category/${secondCategory}`}>Gü-PACKS</Link></li>
         <li><Link to={`/beers`}>NUESTRAS CERVEZAS</Link></li>
+        
     </ul>
 }
 

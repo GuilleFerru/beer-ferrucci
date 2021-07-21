@@ -3,6 +3,6 @@ export const categories = [
         value: 'beerBottle'
     },
     {
-        value: 'sixPack'
+        value: 'combos'
     }
 ];

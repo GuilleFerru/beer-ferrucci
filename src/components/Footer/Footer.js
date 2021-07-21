@@ -15,8 +15,8 @@ export const Footer = () => {
     return <footer className={classes.container}>
         <div>
             <div>
-                < Link to={"/"}><WhatsAppIcon fontSize="large" /></Link>
-                < Link to={"/"}><InstagramIcon fontSize="large" /></Link>
+                < Link to={{pathname:"https://wa.me/543571419350"}} target="_blank"><WhatsAppIcon fontSize="large" /></Link>
+                < Link to={{pathname:"https://www.instagram.com/cerveza_guendolina/" }} target="_blank"><InstagramIcon fontSize="large" /></Link>
             </div>
             <div>
                 <Link to={'/'}>

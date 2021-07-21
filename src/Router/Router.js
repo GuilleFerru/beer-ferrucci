@@ -9,7 +9,7 @@ import { BeersContainer } from '../screens/BeersContainer/BeersContainer';
 
 export const Router = () => {
     return <Switch>
-         <Redirect from="/beer-ferrucci" to="/" />
+        <Redirect from="/beer-ferrucci" to="/" />
         <Route exact path="/">
             <ItemListContainer />
         </Route>

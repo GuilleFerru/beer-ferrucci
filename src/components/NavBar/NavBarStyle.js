@@ -39,13 +39,18 @@ export const navBarStyle = theme => {
             fontSize:'1.2rem',
             '& li': {
                 padding: '0.5rem',
-                color: 'black',
+                color: 'rgba(0, 0, 0, 0.70)',
                 cursor: 'pointer',
                 '& a':{
                     textDecoration: 'none',
                     color: 'inherit'
                 }
             
+            },
+            '& li:hover':{
+                transform: 'scale(1.05)',
+                transition: '0.5s ease-in-out',
+                color: 'black',
             },
             '@media (max-width: 800px)': {
                 flexFlow: 'column nowrap'
